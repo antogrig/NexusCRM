@@ -35,7 +35,7 @@ function App() {
 
     const fetchClients = () => {
         setLoading(true)
-        axios.get('http://127.0.0.1:8080/api/clients')
+        axios.get('/api/clients')
             .then((res) => {
                 setClients(res.data)
                 setLoading(false)
@@ -63,7 +63,7 @@ function App() {
     // Χειρισμός Logout
     const handleLogout = () => {
         if (token) {
-            axios.post('http://127.0.0.1:8080/api/logout').catch(() => {})
+            axios.post('/api/logout').catch(() => {})
         }
         localStorage.removeItem('nexus_token')
         localStorage.removeItem('nexus_user')
@@ -77,7 +77,7 @@ function App() {
         e.preventDefault()
         setSubmittingClient(true)
 
-        axios.post('http://127.0.0.1:8080/api/clients', clientForm)
+        axios.post('/api/clients', clientForm)
             .then(() => {
                 fetchClients()
                 setClientForm({ company_name: '', vat_number: '', email: '', phone: '' })
@@ -95,7 +95,7 @@ function App() {
         if (!projectForm.client_id) return alert('Επιλέξτε πελάτη!')
         setSubmittingProject(true)
 
-        axios.post('http://127.0.0.1:8080/api/projects', projectForm)
+        axios.post('/api/projects', projectForm)
             .then(() => {
                 fetchClients()
                 setProjectForm({ client_id: '', title: '', status: 'open' })
@@ -113,7 +113,7 @@ function App() {
         if (!taskForm.project_id) return alert('Επιλέξτε Project!')
         setSubmittingTask(true)
 
-        axios.post('http://127.0.0.1:8080/api/tasks', taskForm)
+        axios.post('/api/tasks', taskForm)
             .then(() => {
                 fetchClients() // Ξανατραβάμε τα δεδομένα για να εμφανιστεί το νέο task
                 setTaskForm({ project_id: '', title: '', status: 'todo' }) // Καθαρίζουμε τη φόρμα
@@ -127,7 +127,7 @@ function App() {
         // Αν είναι done το κάνουμε todo, αλλιώς done
         const nextStatus = task.status === 'done' ? 'todo' : 'done'
 
-        axios.patch(`http://127.0.0.1:8080/api/tasks/${task.id}`, { status: nextStatus })
+        axios.patch(`/api/tasks/${task.id}`, { status: nextStatus })
             .then(() => {
                 fetchClients() // Ανανεώνουμε το UI
             })

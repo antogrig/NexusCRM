@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 export default function Login({ onLoginSuccess }) {
@@ -19,7 +19,7 @@ export default function Login({ onLoginSuccess }) {
         setError(null)
 
         try {
-            const response = await axios.post('http://127.0.0.1:8080/api/login', {
+            const response = await axios.post('/api/login', {
                 email: loginEmail,
                 password: loginPassword,
             })
