@@ -1,0 +1,11 @@
+# Root Gitignore
+.idea/
+.vscode/
+*.log
+
+# Subfolder ignores are also handled by their respective .gitignore files
+nexus-crm/vendor/
+nexus-crm/.env
+nexus-crm/storage/*.key
+nexus-frontend/node_modules/
+nexus-frontend/dist/
