@@ -6,6 +6,7 @@ import Quiz from './Quiz'
 import Docs from './Docs'
 import Home from './pages/Home'
 import Portfolio from './pages/Portfolio'
+import SkillsPage from './pages/SkillsPage'
 import Contact from './pages/Contact'
 import Navbar from './components/Navbar'
 
@@ -462,6 +463,7 @@ function App() {
 {/* Προεπιλογή: αν πατήσει Αρχική ή άγνωστο URL, πήγαινε στο /crm */}
     <Route path="/" element={<Home />} />
     <Route path="/portfolio" element={<Portfolio />} />
+    <Route path="/skills" element={<SkillsPage />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="*" element={<Navigate to="/crm" replace />} />
 </Routes>

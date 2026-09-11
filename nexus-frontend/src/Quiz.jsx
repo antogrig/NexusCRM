@@ -440,6 +440,28 @@ const questions = [
             { text: 'Επειδή χρειάζεται ειδική πληρωμή στη Google για κάθε προβολή.', isCorrect: false },
         ],
         explanation: 'Για λόγους ασφαλείας (προστασία από Clickjacking επιθέσεις), το YouTube απαγορεύει το embedding των απλών σελίδων του. Επιτρέπει την προβολή μόνο μέσω του επίσημου player endpoint: https://www.youtube-nocookie.com/embed/VIDEO_ID.'
+    },
+    {
+        id: 41,
+        category: 'UI Architecture & Data Visualization',
+        question: 'Γιατί σε ένα Skills Matrix ομαδοποιούμε τις τεχνολογίες ανά Domain (Web, Game Dev, Database, DevOps);',
+        options: [
+            { text: 'Για να μειώσουμε το νοητικό φορτίο (Cognitive Load) και να επιτρέψουμε στους τεχνικούς recruiters να αξιολογήσουν στοχευμένα τις δεξιότητες ανά ρόλο.', isCorrect: true },
+            { text: 'Επειδή η JavaScript δεν μπορεί να διαβάσει πάνω από 5 skills ταυτόχρονα.', isCorrect: false },
+            { text: 'Για να πιάνει λιγότερο χώρο στον σκληρό δίσκο.', isCorrect: false },
+        ],
+        explanation: 'Στον σχεδιασμό διεπαφών (UX Design), το Domain Grouping επιτρέπει στον υποψήφιο εργοδότη να δει αμέσως την πληρότητα του stack (T-shaped developer profile) χωρίς να χάνεται σε μια ατελείωτη ασύνδετη λίστα λέξεων-κλειδιών.'
+    },
+    {
+        id: 42,
+        category: 'UI Architecture & Progress Bars',
+        question: 'Πώς σχεδιάζουμε δυναμικά progress bars στη React με Tailwind CSS;',
+        options: [
+            { text: 'Ορίζοντας το πλάτος (width) δυναμικά μέσω inline style (π.χ. style={{ width: `${skill.level}%` }}) σε συνδυασμό με transition-all.', isCorrect: true },
+            { text: 'Με εξωτερικό Flash plugin.', isCorrect: false },
+            { text: 'Κάνοντας resize το παράθυρο του browser.', isCorrect: false },
+        ],
+        explanation: 'Χρησιμοποιώντας inline style style={{ width: `${skill.level}%` }} σε συνδυασμό με transition-all duration-500, η μπάρα προόδου αποκτά ακριβές δυναμικό πλάτος με ομαλό εφέ γεμίσματος (smooth animation).'
     }
 ]
 

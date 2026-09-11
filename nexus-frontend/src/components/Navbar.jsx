@@ -36,6 +36,11 @@ export default function Navbar() {
                         <span>Portfolio</span>
                     </NavLink>
 
+                    <NavLink to="/skills" className={linkClass}>
+                        <Layers className="w-4 h-4" />
+                        <span>Δεξιότητες</span>
+                    </NavLink>
+
                     <NavLink to="/crm" className={linkClass}>
                         <LayoutDashboard className="w-4 h-4 text-emerald-600" />
                         <span>Live CRM Demo</span>
