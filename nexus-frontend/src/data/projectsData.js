@@ -32,7 +32,7 @@
             'AI Behavior Trees με Perception System',
             'Combo Attack System με Root Motion'
         ],
-        liveDemoUrl: null,
+        videoUrl: 'https://www.youtube.com/embed/0cHpsPP6a3A?si=Vs5Isg8suW-5FXsH',
         isInternalDemo: false
     },
     {
@@ -50,7 +50,7 @@
             'Custom Virtual Touch Joysticks',
             'Μείωση Draw Calls & Memory Optimization'
         ],
-        liveDemoUrl: null,
+        videoUrl: 'https://www.youtube.com/embed/0cHpsPP6a3A?si=Vs5Isg8suW-5FXsH',
         isInternalDemo: false
     },
     {

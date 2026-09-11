@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projectsData } from '../data/projectsData'
+import VideoModal from '../components/VideoModal'
 import {
     Code2,
     Gamepad2,
@@ -8,11 +9,13 @@ import {
     ArrowRight,
     CheckCircle2,
     Sparkles,
+    Play,
     ExternalLink
 } from 'lucide-react'
 
 export default function Portfolio() {
     const [activeFilter, setActiveFilter] = useState('all')
+    const [activeVideoProject, setActiveVideoProject] = useState(null)
 
     // Φιλτράρισμα των έργων στη μνήμη (Array.filter)
     const filteredProjects = activeFilter === 'all'
@@ -145,9 +148,17 @@ export default function Portfolio() {
                                         <span>Άνοιγμα Live Interactive Demo</span>
                                         <ArrowRight className="w-3.5 h-3.5" />
                                     </Link>
+                                ) : project.videoUrl ? (
+                                    <button
+                                        onClick={() => setActiveVideoProject(project)}
+                                        className="w-full inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 px-4 rounded-xl text-xs transition shadow-sm cursor-pointer"
+                                    >
+                                        <Play className="w-3.5 h-3.5 fill-current" />
+                                        <span>Gameplay Video Showcase</span>
+                                    </button>
                                 ) : (
                                     <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-2 rounded-lg border border-slate-200 w-full justify-center">
-                                        <span>Unreal Engine 5 Case Study</span>
+                                        <span>Enterprise Case Study</span>
                                     </div>
                                 )}
                             </div>
@@ -156,7 +167,10 @@ export default function Portfolio() {
                     )
                 })}
             </div>
-
+            <VideoModal
+                project={activeVideoProject}
+                onClose={() => setActiveVideoProject(null)}
+            />
         </div>
     )
 }

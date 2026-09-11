@@ -418,6 +418,28 @@ const questions = [
             { text: 'Διαγράφει όλα τα αρχεία του project.', isCorrect: false },
         ],
         explanation: 'Το Git λειτουργεί με 3 καταστάσεις: Working Directory ➡️ Staging Area (μέσω git add) ➡️ Local Repository (μέσω git commit). Με το "git add ." επιλέγουμε ποιες αλλαγές είναι έτοιμες να καταγραφούν στο επόμενο μόνιμο snapshot.'
+    },
+    {
+        id: 39,
+        category: 'React Modal Architecture',
+        question: 'Πώς υλοποιείται ένα Modal popup παράθυρο στη σύγχρονη React;',
+        options: [
+            { text: 'Χρησιμοποιώντας React State (π.χ. selectedVideo !== null) για Conditional Rendering και event handlers για το κλείσιμο (onClose).', isCorrect: true },
+            { text: 'Με παλιές jQuery εντολές όπως $("#modal").show().', isCorrect: false },
+            { text: 'Κάνοντας full page reload της σελίδας.', isCorrect: false },
+        ],
+        explanation: 'Στη React, τα Modals είναι State-driven: όταν το state είναι null δεν φορτώνονται καθόλου στο DOM. Μόλις ο χρήστης πατήσει κλικ, το state παίρνει τιμή, το modal εμφανίζεται με backdrop blur και κλείνει αλλάζοντας ξανά το state σε null.'
+    },
+    {
+        id: 40,
+        category: 'Web Standards & iFrames',
+        question: 'Γιατί σε ένα <iframe> δεν μπορούμε να βάλουμε κανονικό σύνδεσμο YouTube (π.χ. https://youtu.be/...);',
+        options: [
+            { text: 'Επειδή το YouTube μπλοκάρει τα κανονικά watch links μέσα σε iframe μέσω του security header "X-Frame-Options: SAMEORIGIN" και απαιτεί το ειδικό URL μορφής embed (/embed/VIDEO_ID).', isCorrect: true },
+            { text: 'Επειδή τα iframes της HTML δεν υποστηρίζουν αναπαραγωγή βίντεο.', isCorrect: false },
+            { text: 'Επειδή χρειάζεται ειδική πληρωμή στη Google για κάθε προβολή.', isCorrect: false },
+        ],
+        explanation: 'Για λόγους ασφαλείας (προστασία από Clickjacking επιθέσεις), το YouTube απαγορεύει το embedding των απλών σελίδων του. Επιτρέπει την προβολή μόνο μέσω του επίσημου player endpoint: https://www.youtube-nocookie.com/embed/VIDEO_ID.'
     }
 ]
 
