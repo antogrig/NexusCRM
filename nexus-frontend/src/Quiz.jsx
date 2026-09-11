@@ -407,6 +407,17 @@ const questions = [
             { text: 'Μια φόρμα που στέλνει τα δεδομένα χωρίς σύνδεση στο internet.', isCorrect: false },
         ],
         explanation: 'Στα Controlled Components, η μοναδική πηγή αλήθειας (Single Source of Truth) για το τι γράφει το input είναι το React state. Αυτό επιτρέπει άμεσο real-time validation, δυναμικό disable του κουμπιού αποστολής και πλήρη έλεγχο των δεδομένων.'
+    },
+    {
+        id: 38,
+        category: 'Git & Version Control',
+        question: 'Τι κάνει η εντολή "git add ." πριν από το "git commit";',
+        options: [
+            { text: 'Μεταφέρει όλες τις αλλαγές (τροποποιημένα και νέα αρχεία) στο Staging Area (index) ώστε να συμπεριληφθούν στο επόμενο commit snapshot.', isCorrect: true },
+            { text: 'Στέλνει αυτόματα τα αρχεία στον production web server.', isCorrect: false },
+            { text: 'Διαγράφει όλα τα αρχεία του project.', isCorrect: false },
+        ],
+        explanation: 'Το Git λειτουργεί με 3 καταστάσεις: Working Directory ➡️ Staging Area (μέσω git add) ➡️ Local Repository (μέσω git commit). Με το "git add ." επιλέγουμε ποιες αλλαγές είναι έτοιμες να καταγραφούν στο επόμενο μόνιμο snapshot.'
     }
 ]
 

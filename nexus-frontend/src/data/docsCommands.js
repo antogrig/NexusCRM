@@ -23,5 +23,18 @@ export const docsCommands = [
       { part: 'dev', meaning: 'Το όνομα του script ("vite") που σηκώνει τον server ανάπτυξης' }
     ],
     example: 'npm run dev\n# Output: Local: http://localhost:5173/'
+  },
+  {
+    id: 3,
+    command: 'git add . && git commit -m "feat: your descriptive message"',
+    category: 'Git & Version Control',
+    purpose: 'Σταδιοποίηση και μόνιμη καταγραφή αλλαγών (Snapshot)',
+    description: 'Το "git add ." προετοιμάζει όλες τις τροποποιήσεις στο staging index και το "git commit" δημιουργεί ένα νέο μόνιμο snapshot στο ιστορικό του κώδικα, συνοδευόμενο από επεξηγηματικό μήνυμα.',
+    breakdown: [
+      { part: 'git add .', meaning: 'Προσθέτει όλα τα νέα, τροποποιημένα ή διεγραμμένα αρχεία στο Staging Area' },
+      { part: 'git commit', meaning: 'Καταγράφει οριστικά το snapshot στο τοπικό Git repository' },
+      { part: '-m "..."', meaning: 'Ορίζει το περιγραφικό μήνυμα (commit message) χωρίς να ανοίξει εξωτερικό editor' }
+    ],
+    example: 'git add .\ngit commit -m "feat(portfolio): add contact page and routing"'
   }
 ];
