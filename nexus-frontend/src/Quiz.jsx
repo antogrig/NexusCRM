@@ -286,6 +286,127 @@ const questions = [
             { text: 'Ελέγχει αν το Frontend έχει χρώμα μπλε.', isCorrect: false },
         ],
         explanation: 'Οι ισχυρισμοί βάσης (Database assertions) επιβεβαιώνουν ότι το API δεν επέστρεψε απλώς ένα status code, αλλά εκτέλεσε όντως τη σωστή αποθήκευση στη βάση.'
+    },
+    {
+        id: 27,
+        category: 'React & Routing',
+        question: 'Γιατί εγκαθιστούμε το "react-router-dom" σε ένα Single Page Application (SPA);',
+        options: [
+            { text: 'Για να διαχειριζόμαστε πολλαπλές σελίδες και URLs (/crm, /quiz, /portfolio) ακαριαία, χωρίς να κάνει full reload ο browser.', isCorrect: true },
+            { text: 'Για να συνδεθούμε με το router του σπιτιού μας.', isCorrect: false },
+            { text: 'Επειδή το React δεν μπορεί να εμφανίσει κείμενο χωρίς αυτό.', isCorrect: false },
+        ],
+        explanation: 'Το react-router-dom επιτρέπει στο Frontend να αλλάζει το URL της γραμμής διευθύνσεων και να προβάλλει το αντίστοιχο component άμεσα, διατηρώντας το React state ζωντανό χωρίς περιττά page reloads.'
+    },
+    {
+        id: 28,
+        category: 'Vite & Tooling',
+        question: 'Τι προσφέρει το Hot Module Replacement (HMR) του Vite κατά την εντολή "npm run dev";',
+        options: [
+            { text: 'Ανανεώνει ακαριαία μόνο το component ή το αρχείο που άλλαξες στον browser, χωρίς να χάνεται το state της εφαρμογής.', isCorrect: true },
+            { text: 'Κάνει reset ολόκληρο τον υπολογιστή.', isCorrect: false },
+            { text: 'Σβήνει τα αρχεία για εξοικονόμηση χώρου.', isCorrect: false },
+        ],
+        explanation: 'Το HMR (Hot Module Replacement) αντικαθιστά, προσθέτει ή αφαιρεί modules εν ώρα εκτέλεσης της εφαρμογής χωρίς full reload, προσφέροντας ασύγκριτη ταχύτητα στο development.'
+    },
+    {
+        id: 29,
+        category: 'React & Routing',
+        question: 'Γιατί τοποθετούμε το <BrowserRouter> στην κορυφή της εφαρμογής (στο main.jsx);',
+        options: [
+            { text: 'Για να παρέχει το Routing Context σε όλο το application tree, αξιοποιώντας το HTML5 History API για URL navigation.', isCorrect: true },
+            { text: 'Για να αλλάζει τα χρώματα του CSS.', isCorrect: false },
+            { text: 'Για να συνδέεται με τη βάση PostgreSQL.', isCorrect: false },
+        ],
+        explanation: 'Το <BrowserRouter> λειτουργεί ως Context Provider για το Routing. Χωρίς αυτό στην κορυφή, components όπως <Routes>, <Route>, <NavLink> και hooks όπως το useNavigate() δεν μπορούν να λειτουργήσουν.'
+    },
+    {
+        id: 30,
+        category: 'Architecture: React vs Drupal',
+        question: 'Σε τι αντιστοιχεί το main.jsx της React στη νοοτροπία του Drupal;',
+        options: [
+            { text: 'Στο Root Bootstrap & Service Providers (όπως Drupal Kernel & Services), όπου τυλίγουμε την εφαρμογή με καθολικά εργαλεία (Routing, Auth, Theme).', isCorrect: true },
+            { text: 'Στο αρχείο robots.txt του server.', isCorrect: false },
+            { text: 'Σε ένα απλό CSS theme αρχείο.', isCorrect: false },
+        ],
+        explanation: 'Όπως στο Drupal το kernel και τα core services παρέχουν καθολική λειτουργικότητα (Path, User Session) σε όλα τα modules, έτσι στο main.jsx της React ορίζουμε τους Global Context Providers (<BrowserRouter>, <AuthProvider>) που αγκαλιάζουν όλο το component tree.'
+    },
+    {
+        id: 31,
+        category: 'React Router',
+        question: 'Ποια είναι η διαφορά μεταξύ <Routes> και <Route> στο react-router-dom;',
+        options: [
+            { text: 'Το <Routes> είναι ο κεντρικός διακόπτης (switch container) και περιέχει πολλαπλά <Route>, καθένα από τα οποία συνδέει ένα URL path με ένα συγκεκριμένο component.', isCorrect: true },
+            { text: 'Το <Route> είναι για να στέλνουμε emails.', isCorrect: false },
+            { text: 'Δεν έχουν καμία διαφορά, είναι συνώνυμα.', isCorrect: false },
+        ],
+        explanation: 'Το <Routes> ελέγχει το URL του browser και κάνει render μόνο εκείνο το παιδί-<Route> του οποίου το "path" ταιριάζει με την τρέχουσα διεύθυνση.'
+    },
+    {
+        id: 32,
+        category: 'React & JSX Debugging',
+        question: 'Τι σημαίνει το σφάλμα "Expected corresponding JSX closing tag for div" στο Vite/React;',
+        options: [
+            { text: 'Ότι άνοιξε ένα <div> tag αλλά ξεχάστηκε να κλείσει με </div> πριν από κάποιο άλλο γονικό ή αδερφικό στοιχείο.', isCorrect: true },
+            { text: 'Ότι η PostgreSQL βάση είναι εκτός λειτουργίας.', isCorrect: false },
+            { text: 'Ότι ο browser δεν υποστηρίζει JavaScript.', isCorrect: false },
+        ],
+        explanation: 'Το JSX ακολουθεί αυστηρούς κανόνες XML σύνταξης: κάθε στοιχείο που ανοίγει πρέπει οπωσδήποτε να κλείνει με την ακριβή ιεραρχική σειρά. Αν ένα <div> μείνει ανοιχτό, ο compiler δεν μπορεί να καταλάβει πού τελειώνει το δέντρο του component.'
+    },
+    {
+        id: 33,
+        category: 'Developer Productivity & IDEs',
+        question: 'Γιατί μια ακριβής αναζήτηση κώδικα (π.χ. στο JetBrains Rider) μπορεί να αποτύχει να εντοπίσει μια γραμμή;',
+        options: [
+            { text: 'Λόγω διαφορών στα κενά/tabs (whitespace), ή ενεργοποιημένων φίλτρων όπως το Regex (.*) και Match Case (Cc).', isCorrect: true },
+            { text: 'Επειδή το IDE απαγορεύει την αναζήτηση σε αρχεία JSX.', isCorrect: false },
+            { text: 'Επειδή ο κώδικας δεν έχει γίνει ακόμα commit στο Git.', isCorrect: false },
+        ],
+        explanation: 'Τα IDEs κάνουν exact character matching. Αν υπάρχει ένα παραπάνω κενό, tab, ή αν είναι ενεργό το κουμπί Regex (.*) όπου τα <, >, / εκλαμβάνονται ως σύμβολα regex, η αναζήτηση αποτυγχάνει. Pro-tip: Αναζητούμε πάντα μικρές μοναδικές λέξεις-κλειδιά όπως path="/" ή to="/crm".'
+    },
+    {
+        id: 34,
+        category: 'Architecture & Data Separation',
+        question: 'Γιατί διαχωρίζουμε τα δεδομένα (π.χ. projectsData.js) από το component παρουσίασης (Portfolio.jsx);',
+        options: [
+            { text: 'Γιατί ακολουθούμε την αρχή Separation of Concerns: τα δεδομένα αλλάζουν εύκολα ή αντικαθίστανται με API call, χωρίς να επηρεάζεται το UI layout.', isCorrect: true },
+            { text: 'Για να αυξήσουμε τον χρόνο φόρτωσης της σελίδας.', isCorrect: false },
+            { text: 'Επειδή η React δεν επιτρέπει arrays μέσα σε components.', isCorrect: false },
+        ],
+        explanation: 'Το Separation of Concerns επιτρέπει στον κώδικα να είναι συντηρήσιμος (maintainable). Αύριο, αν αντί για τοπικό αρχείο projectsData.js τραβάμε τα έργα από το Laravel REST API (/api/projects), το component Portfolio.jsx θα παραμείνει απαράλλαχτο!'
+    },
+    {
+        id: 35,
+        category: 'React State & Array Methods',
+        question: 'Πώς υλοποιούμε ακαριαίο φιλτράρισμα λίστας (π.χ. φίλτρο Web / Games) στη React χωρίς reload;',
+        options: [
+            { text: 'Συνδυάζοντας το useState για την ενεργή κατηγορία με τη μέθοδο Array.filter() της JavaScript κατά το render.', isCorrect: true },
+            { text: 'Κάνοντας restart τον Vite development server σε κάθε κλικ.', isCorrect: false },
+            { text: 'Εκτελώντας raw SQL queries απευθείας μέσα από το CSS.', isCorrect: false },
+        ],
+        explanation: 'Όταν ο χρήστης πατάει ένα κουμπί φίλτρου, το setFilter(cat) ενημερώνει το React state. Το component κάνει re-render αυτόματα και η JavaScript μέθοδος .filter() παράγει τη νέα υπο-λίστα στη μνήμη σε κλάσματα του millisecond.'
+    },
+    {
+        id: 36,
+        category: 'Authentication & Protected Routes',
+        question: 'Γιατί σε ένα Portfolio SPA δεν πρέπει να βάζουμε "if (!token) return <Login />" καθολικά στην κορυφή του App.jsx;',
+        options: [
+            { text: 'Γιατί κλειδώνει ολόκληρο το site (Αρχική, Portfolio, Quiz, Docs) για τους ανώνυμους επισκέπτες και υποψήφιους εργοδότες.', isCorrect: true },
+            { text: 'Γιατί τα tokens καταναλώνουν υπερβολική μνήμη RAM.', isCorrect: false },
+            { text: 'Επειδή η React απαγορεύει το login εκτός backend.', isCorrect: false },
+        ],
+        explanation: 'Σε ένα επαγγελματικό portfolio, οι δημόσιες σελίδες (Home, Portfolio, Docs, Quiz) πρέπει να είναι ανοιχτές σε όλους (Guest / Anonymous). Μόνο η ιδιωτική διαδρομή του CRM (/crm) πρέπει να ελέγχει αν υπάρχει Sanctum token, προβάλλοντας τη φόρμα σύνδεσης μόνο εκεί.'
+    },
+    {
+        id: 37,
+        category: 'React Forms & State',
+        question: 'Τι είναι ένα Controlled Component σε μια φόρμα React;',
+        options: [
+            { text: 'Ένα input του οποίου η τιμή (value) ελέγχεται απευθείας από το React state (useState) και ενημερώνεται με onChange.', isCorrect: true },
+            { text: 'Ένα component που λειτουργεί μόνο με άδεια του διαχειριστή.', isCorrect: false },
+            { text: 'Μια φόρμα που στέλνει τα δεδομένα χωρίς σύνδεση στο internet.', isCorrect: false },
+        ],
+        explanation: 'Στα Controlled Components, η μοναδική πηγή αλήθειας (Single Source of Truth) για το τι γράφει το input είναι το React state. Αυτό επιτρέπει άμεσο real-time validation, δυναμικό disable του κουμπιού αποστολής και πλήρη έλεγχο των δεδομένων.'
     }
 ]
 

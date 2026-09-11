@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import Login from './Login'
 import Quiz from './Quiz'
+import Docs from './Docs'
+import Home from './pages/Home'
+import Portfolio from './pages/Portfolio'
+import Contact from './pages/Contact'
+import Navbar from './components/Navbar'
 
 function App() {
     // 1. Auth States (Διαβάζουμε από το LocalStorage)
@@ -139,14 +145,10 @@ function App() {
         (c.projects || []).map((p) => ({ ...p, client_name: c.company_name }))
     )
 
-    // Αν ΔΕΝ υπάρχει Token, δείχνουμε την οθόνη Login!
-    if (!token) {
-        return <Login onLoginSuccess={handleLoginSuccess} />
-    }
-
     // Αν ΥΠΑΡΧΕΙ Token, δείχνουμε το Dashboard!
     return (
         <div className="min-h-screen bg-slate-50 p-6 md:p-10 font-sans">
+            <Navbar />
             <div className="max-w-6xl mx-auto space-y-6">
 
                 {/* Top Header με User Profile & Logout */}
@@ -170,30 +172,6 @@ function App() {
                 {user?.role || 'admin'}
               </span>
                         </div>
-
-                        {/* Tabs */}
-                        <div className="flex bg-slate-100 p-1 rounded-lg">
-                            <button
-                                onClick={() => setActiveTab('clients')}
-                                className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
-                                    activeTab === 'clients' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                                }`}
-                            >
-                                🏢 Πελάτες & Projects
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('quiz')}
-                                className={`px-3 py-1.5 rounded-md text-xs font-medium transition flex items-center gap-1.5 ${
-                                    activeTab === 'quiz' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-600 hover:text-blue-600'
-                                }`}
-                            >
-                                <span>🧠 Tech Quiz</span>
-                                <span className="bg-blue-100 text-blue-700 text-[10px] px-1.5 py-0.2 rounded-full font-bold">
-                  Επανάληψη
-                </span>
-                            </button>
-                        </div>
-
                         {/* Logout Button */}
                         <button
                             onClick={handleLogout}
@@ -203,12 +181,13 @@ function App() {
                         </button>
                     </div>
                 </div>
-
-                {activeTab === 'quiz' ? (
-                    <Quiz />
-                ) : (
-                    <div className="space-y-6">
-
+                <Routes>
+                    {/* Διαδρομή για το CRM */}
+                    <Route path="/crm" element={
+                        !token ? (
+                            <Login onLoginSuccess={handleLoginSuccess} />
+                    ) : (
+                        <div className="space-y-6">
                         {/* Δύο Φόρμες */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {/* Φόρμα 3: Task */}
@@ -470,11 +449,25 @@ function App() {
                             </div>
                         )}
 
-                    </div>
-                )}
-
-            </div>
         </div>
+                        )
+} />
+
+{/* Διαδρομή Quiz */}
+    <Route path="/quiz" element={<Quiz />} />
+
+{/* Διαδρομή Docs */}
+    <Route path="/docs" element={<Docs />} />
+
+{/* Προεπιλογή: αν πατήσει Αρχική ή άγνωστο URL, πήγαινε στο /crm */}
+    <Route path="/" element={<Home />} />
+    <Route path="/portfolio" element={<Portfolio />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="*" element={<Navigate to="/crm" replace />} />
+</Routes>
+
+</div>
+</div>
     )
 }
 
