@@ -49,5 +49,56 @@ export const docsCommands = [
       { part: 'dist/', meaning: 'Ο τελικός στατικός φάκελος που περιέχει τα compiled HTML/CSS/JS αρχεία έτοιμα για deployment (Vercel, Netlify, Render)' }
     ],
     example: 'npm run build\n# Output: ✓ built in 481ms (dist/assets/index-*.js)'
+  },
+  {
+    id: 5,
+    command: 'php artisan make:model ContactMessage -m',
+    category: 'Laravel Artisan & CLI',
+    purpose: 'Δημιουργία Eloquent Model & Database Migration',
+    description: 'Δημιουργεί ταυτόχρονα το Eloquent Model (app/Models/ContactMessage.php) και το αρχείο migration στη βάση δεδομένων (database/migrations/xxxx_create_contact_messages_table.php).',
+    breakdown: [
+      { part: 'php artisan', meaning: 'Το επίσημο Command-Line Interface (CLI) εργαλείο του Laravel' },
+      { part: 'make:model ContactMessage', meaning: 'Δημιουργεί την κλάση μοντέλου στο φάκελο app/Models/' },
+      { part: '-m (ή --migration)', meaning: 'Flag που δημιουργεί αυτόματα το σχετικό migration αρχείο για τον πίνακα της βάσης' }
+    ],
+    example: 'php artisan make:model ContactMessage -m\n# INFO Model [app/Models/ContactMessage.php] created successfully.\n# INFO Migration [database/migrations/..._create_contact_messages_table.php] created successfully.'
+  },
+  {
+    id: 6,
+    command: 'php artisan migrate',
+    category: 'Database & Migrations',
+    purpose: 'Εκτέλεση όλων των εκκρεμών migrations στη βάση δεδομένων',
+    description: 'Ελέγχει τον πίνακα "migrations" στη βάση δεδομένων (PostgreSQL) και εκτελεί τη μέθοδο up() για όλα τα νέα αρχεία migration, δημιουργώντας με ασφάλεια τους πίνακες, τα foreign keys και τα indexes.',
+    breakdown: [
+      { part: 'php artisan', meaning: 'Το CLI εργαλείο του Laravel' },
+      { part: 'migrate', meaning: 'Εκτελεί τη μέθοδο up() σε όλα τα μη εκτελεσμένα migration αρχεία' },
+      { part: 'Batch tracking', meaning: 'Το Laravel αποθηκεύει τον αριθμό batch στον πίνακα migrations επιτρέποντας rollback' }
+    ],
+    example: 'php artisan migrate\n# 2026_09_11_xxxxxx_create_contact_messages_table .. RUNNING\n# 2026_09_11_xxxxxx_create_contact_messages_table .. 12.45ms DONE'
+  },
+  {
+    id: 7,
+    command: 'php artisan make:controller Api/ContactController',
+    category: 'Controllers & Routing',
+    purpose: 'Δημιουργία Controller για REST API Endpoints',
+    description: 'Δημιουργεί έναν API Controller στο φάκελο app/Http/Controllers/Api/ για τη διαχείριση της επικύρωσης (Validation) των δεδομένων φόρμας και την αποθήκευση στη βάση μέσω Eloquent.',
+    breakdown: [
+      { part: 'php artisan', meaning: 'Το CLI εργαλείο του Laravel' },
+      { part: 'make:controller', meaning: 'Εντολή παραγωγής controller boilerplate κώδικα' },
+      { part: 'Api/ContactController', meaning: 'Δημιουργεί το αρχείο μέσα στο υποφάκελο app/Http/Controllers/Api/' }
+    ],
+    example: 'php artisan make:controller Api/ContactController\n# INFO Controller [app/Http/Controllers/Api/ContactController.php] created successfully.'
+  },
+  {
+    id: 8,
+    command: 'php artisan route:list --path=contact',
+    category: 'Debugging & Routing',
+    purpose: 'Επιθεώρηση και επαλήθευση καταχωρημένων API διαδρομών',
+    description: 'Εμφανίζει αναλυτικό πίνακα με όλα τα ενεργά endpoints, τα HTTP verbs (GET, POST κ.λπ.), τα middlewares προστασίας και τις συνδεδεμένες μεθόδους των Controllers.',
+    breakdown: [
+      { part: 'php artisan route:list', meaning: 'Εκτυπώνει το routing table της εφαρμογής' },
+      { part: '--path=contact', meaning: 'Φίλτρο αναζήτησης για προβολή μόνο των σχετικών endpoints' }
+    ],
+    example: 'php artisan route:list --path=contact\n# POST api/contact .. Api\\ContactController@store\n# GET|HEAD api/contacts .. Api\\ContactController@index'
   }
 ];

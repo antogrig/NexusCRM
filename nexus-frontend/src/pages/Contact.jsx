@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react'
+import axios from 'axios'
 import {
     Mail,
     MapPin,
@@ -7,7 +8,8 @@ import {
     CheckCircle2,
     Sparkles,
     Clock,
-    MessageSquare
+    MessageSquare,
+    AlertCircle
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { translations } from '../data/translations'
@@ -24,17 +26,29 @@ export default function Contact() {
     })
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
+        setError(null)
 
-        // Προσομοίωση αποστολής (στο επόμενο Phase θα συνδεθεί με το Laravel REST API)
-        setTimeout(() => {
-            setLoading(false)
+        try {
+            await axios.post('/api/contact', form)
             setSubmitted(true)
             setForm({ name: '', email: '', subject: '', message: '' })
-        }, 800)
+        } catch (err) {
+            console.error('Contact submission error:', err)
+            const apiMessage = err.response?.data?.message
+            setError(
+                apiMessage ||
+                (lang === 'el'
+                    ? 'Παρουσιάστηκε σφάλμα κατά την αποστολή. Παρακαλώ δοκιμάστε ξανά.'
+                    : 'An error occurred while sending your message. Please try again.')
+            )
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -129,7 +143,7 @@ export default function Contact() {
 
                 </div>
 
-                {/* 3. Δεξιά Στήλη: Φόρμα Επικοινωνίας (Controlled Form) */}
+                {/* 3. Δεξιά Στήλη: Φόρμα Επικοινωνίας (Real REST API Integration) */}
                 <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm md:col-span-2">
                     {submitted ? (
                         <div className="text-center py-12 space-y-4">
@@ -143,7 +157,10 @@ export default function Contact() {
                                 {t.contact.successDesc}
                             </p>
                             <button
-                                onClick={() => setSubmitted(false)}
+                                onClick={() => {
+                                    setSubmitted(false)
+                                    setError(null)
+                                }}
                                 className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg transition cursor-pointer"
                             >
                                 {t.contact.sendAnother}
@@ -155,6 +172,14 @@ export default function Contact() {
                                 <MessageSquare className="w-4 h-4 text-blue-600" />
                                 <h3 className="font-bold text-slate-800 text-base">{t.contact.sendMessage}</h3>
                             </div>
+
+                            {/* Προβολή Σφάλματος (Error Alert) */}
+                            {error && (
+                                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium flex items-center gap-2">
+                                    <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                                    <span>{error}</span>
+                                </div>
+                            )}
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>

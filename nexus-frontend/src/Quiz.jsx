@@ -550,6 +550,61 @@ const questions = [
             { text: 'Χρειάζεται συνεχές fetching από εξωτερικό μεταφραστικό server που αυξάνει το network latency.', isCorrect: false },
         ],
         explanation: 'Ο συνδυασμός React Context API, LocalStorage persistence και Translation Dictionaries αποτελεί το απόλυτο βιομηχανικό πρότυπο για ταχύτατη, αξιόπιστη και ελαφριά διεθνοποίηση (i18n) σε σύγχρονα Single Page Applications.'
+    },
+    {
+        id: 51,
+        category: 'Laravel 11 / Eloquent & Migrations',
+        question: 'Τι εξυπηρετεί η σημαία -m στην εντολή "php artisan make:model ContactMessage -m";',
+        options: [
+            { text: 'Δημιουργεί ταυτόχρονα το Eloquent Model (app/Models) και το αντίστοιχο Database Migration αρχείο (database/migrations) για τη δημιουργία του πίνακα στη βάση δεδομένων.', isCorrect: true },
+            { text: 'Εκτελεί άμεσα migrate όλων των πινάκων στον production server.', isCorrect: false },
+            { text: 'Ρυθμίζει αυτόματα το Mail service για αποστολή emails.', isCorrect: false },
+        ],
+        explanation: 'Η σημαία -m (συντομογραφία του --migration) είναι μία από τις πιο χρήσιμες εντολές του Artisan CLI. Διασφαλίζει ότι κάθε νέο Eloquent Model συνοδεύεται αμέσως από το migration αρχείο που θα δημιουργήσει τον πίνακα στη βάση δεδομένων.'
+    },
+    {
+        id: 52,
+        category: 'Laravel 11 / Security & Eloquent',
+        question: 'Γιατί ορίζουμε το property "protected $fillable = [...]" στα Eloquent Models του Laravel;',
+        options: [
+            { text: 'Για προστασία από Mass Assignment Vulnerability: Καθορίζει ρητά ποια πεδία επιτρέπεται να συμπληρωθούν μαζικά από HTTP requests (π.χ. ContactMessage::create($data)).', isCorrect: true },
+            { text: 'Για να δημιουργηθούν αυτόματα τα foreign keys στη βάση δεδομένων.', isCorrect: false },
+            { text: 'Χωρίς το $fillable, το Laravel αρνείται να φορτώσει το route api.php.', isCorrect: false },
+        ],
+        explanation: 'Το Mass Assignment Protection προστατεύει την εφαρμογή από κακόβουλη έγχυση δεδομένων (over-posting attack). Ορίζοντας το $fillable, επιτρέπουμε ρητά μόνο τα ασφαλή πεδία και αποτρέπουμε αλλοίωση ευαίσθητων στηλών (π.χ. is_admin).'
+    },
+    {
+        id: 53,
+        category: 'Laravel 11 / Validation & REST API',
+        question: 'Τι συμβαίνει όταν αποτύχει το $request->validate([...]) σε ένα REST API request στο Laravel;',
+        options: [
+            { text: 'Το Laravel διακόπτει την εκτέλεση και επιστρέφει αυτόματα JSON response με HTTP Status 422 (Unprocessable Entity) και αναλυτικό πίνακα σφαλμάτων για κάθε άκυρο πεδίο.', isCorrect: true },
+            { text: 'Η εφαρμογή καταρρέει με 500 Internal Server Error.', isCorrect: false },
+            { text: 'Αποθηκεύει τα δεδομένα ως κενά strings στη βάση δεδομένων.', isCorrect: false },
+        ],
+        explanation: 'Όταν το αίτημα στέλνεται από Axios/SPA με "Accept: application/json", το Laravel αναγνωρίζει αυτόματα το API context και σε περίπτωση σφάλματος validation επιστρέφει άμεσα status 422 με τα validation errors χωρίς session redirects.'
+    },
+    {
+        id: 54,
+        category: 'PHP / PSR-4 & Composer Autoloading',
+        question: 'Πώς σχετίζεται το namespace μιας κλάσης (π.χ. namespace App\\Http\\Controllers;) με τη θέση του αρχείου;',
+        options: [
+            { text: 'Βάσει του προτύπου PSR-4, το namespace αντιστοιχεί επακριβώς στη διαδρομή του φακέλου (app/Http/Controllers/Controller.php). Αν το αρχείο βρίσκεται σε διαφορετικό φάκελο, ο Autoloader πετάει "Class not found".', isCorrect: true },
+            { text: 'Η PHP ψάχνει αυτόματα σε ολόκληρο το λειτουργικό σύστημα χωρίς να νοιάζεται για φακέλους.', isCorrect: false },
+            { text: 'Το namespace καθορίζει μόνο το όνομα της βάσης δεδομένων PostgreSQL.', isCorrect: false },
+        ],
+        explanation: 'Το PSR-4 αποτελεί το επίσημο βιομηχανικό πρότυπο του Composer για αυτόματη φόρτωση κλάσεων. Κάθε namespace namespace App\\A\\B; επιβάλλει το αρχείο να βρίσκεται στον φυσικό φάκελο app/A/B.php.'
+    },
+    {
+        id: 55,
+        category: 'Full-Stack Integration / Axios & Async UX',
+        question: 'Ποιο είναι το σωστό pattern διαχείρισης μιας φόρμας κατά την υποβολή της σε REST API με Axios;',
+        options: [
+            { text: 'Χρήση async/await με try/catch: ενεργοποίηση loading state για αποφυγή διπλών κλικ, εμφάνιση μηνύματος επιτυχίας σε 201 Created, και δυναμική προβολή validation errors σε 422.', isCorrect: true },
+            { text: 'Χρήση window.location.reload() αμέσως μόλις πατηθεί το κουμπί.', isCorrect: false },
+            { text: 'Αποστολή των δεδομένων με απλό GET request στη γραμμή διευθύνσεων του browser.', isCorrect: false },
+        ],
+        explanation: 'Η ασύγχρονη διαχείριση (Async State Pattern) με Loading state, Error boundaries και Success feedback αποτελεί τον κανόνα για άψογο UX σε Decoupled Full-Stack εφαρμογές (React + Laravel).'
     }
 ]
 

@@ -6,12 +6,15 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\ContactController;
 
 // 1. ΔΗΜΟΣΙΑ ROUTES
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/contact', [ContactController::class, 'store']);
 
 // 2. ΠΡΟΣΤΑΤΕΥΜΕΝΑ ROUTES (Απαιτούν Bearer Token)
 Route::middleware('auth:sanctum')->group(function () {
+Route::get('/contacts', [ContactController::class, 'index']);
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
