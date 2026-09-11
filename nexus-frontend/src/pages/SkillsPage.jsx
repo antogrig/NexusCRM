@@ -39,13 +39,13 @@ export default function SkillsPage() {
             {/* 1. Header Σελίδας */}
             <div className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm text-center space-y-4">
                 <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#ff014f] uppercase">
-                    <span>{t.skills.tag}</span>
+                    <span>{t?.skills?.tag || 'TECHNICAL CAPABILITIES'}</span>
                 </div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-                    {t.skills.title}
+                    {t?.skills?.title || (lang === 'el' ? 'Τεχνολογικό Stack & Δεξιότητες' : 'Technology Stack & Skills')}
                 </h1>
                 <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                    {t.skills.subtitle}
+                    {t?.skills?.subtitle || (lang === 'el' ? 'Αναλυτική κατανομή δεξιοτήτων σε Full-Stack Web και Unreal Engine 5.' : 'Detailed breakdown of Full-Stack Web and Unreal Engine 5 capabilities.')}
                 </p>
 
                 {/* Φίλτρα Domains */}
@@ -58,7 +58,7 @@ export default function SkillsPage() {
                                 : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50 shadow-sm'
                         }`}
                     >
-                        {t.skills.allDomains}
+                        {t?.skills?.allDomains || (lang === 'el' ? 'Όλοι οι Τομείς' : 'All Domains')}
                     </button>
                     {skillsCategories.map((cat) => (
                         <button
@@ -137,10 +137,10 @@ export default function SkillsPage() {
                     </div>
                     <div>
                         <h2 className="text-2xl font-black text-slate-900">
-                            {t.skills.timelineTitle}
+                            {t?.skills?.timelineTitle || (lang === 'el' ? 'Επαγγελματική Πορεία & Ορόσημα' : 'Career Trajectory & Milestones')}
                         </h2>
                         <p className="text-xs text-slate-500">
-                            {t.skills.timelineSubtitle}
+                            {t?.skills?.timelineSubtitle || (lang === 'el' ? 'Ιστορικό παραγωγής και εξειδίκευσης' : 'Production history and specialization')}
                         </p>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-﻿export const translations = {
+export const translations = {
     el: {
         nav: {
             home: 'Αρχική',
@@ -66,16 +66,35 @@
             thesisRole: 'Gameplay Programmer & Level Designer',
             thesisDesc: 'Σχεδιασμός 3rd-person Action RPG στην Unreal Engine 4/5 με C++, Gameplay Ability System (GAS), AI Behavior Trees και Root Motion.'
         },
+        skills: {
+            tag: 'ΤΕΧΝΙΚΕΣ ΔΕΞΙΟΤΗΤΕΣ & MASTERIES',
+            title: 'Τεχνολογικό Stack & Επίπεδα Εξειδίκευσης',
+            subtitle: 'Αναλυτική κατανομή δεξιοτήτων σε Backend, Frontend, Game Development και DevOps με μετρήσιμα ποσοστά εμπειρίας.',
+            allDomains: 'Όλοι οι Τομείς',
+            timelineTitle: 'Επαγγελματική Πορεία & Ορόσημα',
+            timelineSubtitle: 'Ιστορικό παραγωγής, enterprise projects και ακαδημαϊκή έρευνα.'
+        },
         contact: {
             badge: 'GET IN TOUCH',
+            tag: 'ΕΠΙΚΟΙΝΩΝΙΑ',
             title: 'Ας Υλοποιήσουμε το Επόμενο Project σας',
             subtitle: 'Είτε πρόκειται για full-stack εφαρμογή (Laravel/React/PostgreSQL) είτε για Unreal Engine 5 gameplay mechanics, είμαι διαθέσιμος για συνεργασία.',
+            availabilityTitle: 'ΔΙΑΘΕΣΙΜΟΤΗΤΑ ΓΙΑ ΕΡΓΑ',
+            availabilityDesc: 'Ανοιχτός σε νέες προκλήσεις: Full-Stack Web (Laravel/React) & Unreal Engine 5 projects.',
+            responseTime: 'Τυπικός χρόνος απόκρισης: < 24 ώρες',
+            channels: 'ΑΜΕΣΑ ΚΑΝΑΛΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ',
             nameLabel: 'Το Όνομά σας',
             phoneLabel: 'Τηλέφωνο Επικοινωνίας',
             emailLabel: 'Το Email σας',
             subjectLabel: 'Θέμα Μηνύματος',
             messageLabel: 'Το Μήνυμά σας...',
             submitBtn: 'Αποστολή Μηνύματος →',
+            successTitle: 'Το μήνυμά σας εστάλη επιτυχώς!',
+            successDesc: 'Ευχαριστώ για την επικοινωνία. Θα επικοινωνήσω μαζί σας εντός 24 ωρών.',
+            sendAnother: 'Αποστολή νέου μηνύματος',
+            sendMessage: 'Στείλτε μου ένα μήνυμα',
+            sendBtn: 'Αποστολή Μηνύματος',
+            sendingBtn: 'Αποστολή...',
             location: 'Λάρνακα, Κύπρος',
             email: 'anto.grigoriadis@gmail.com',
             phone: '+357 97695495',
@@ -150,16 +169,35 @@
             thesisRole: 'Gameplay Programmer & Level Designer',
             thesisDesc: 'Designed a 3rd-person Action RPG in Unreal Engine 4/5 with C++, Gameplay Ability System (GAS), AI Behavior Trees, and Root Motion.'
         },
+        skills: {
+            tag: 'TECHNICAL CAPABILITIES & STACK',
+            title: 'Technology Stack & Engineering Domains',
+            subtitle: 'Comprehensive distribution across Backend, Frontend, Game Development, and DevOps with proficiency metrics.',
+            allDomains: 'All Domains',
+            timelineTitle: 'Career Trajectory & Milestones',
+            timelineSubtitle: 'Production history, enterprise projects, and specialized thesis work.'
+        },
         contact: {
             badge: 'GET IN TOUCH',
+            tag: 'GET IN TOUCH',
             title: 'Elevate Your Vision With Me',
             subtitle: 'Whether you need a full-stack platform (Laravel/React/PostgreSQL) or Unreal Engine 5 gameplay mechanics, let us collaborate.',
+            availabilityTitle: 'AVAILABILITY FOR ROLES',
+            availabilityDesc: 'Open to new challenges: Full-Stack Web (Laravel/React) & Unreal Engine 5 projects.',
+            responseTime: 'Typical response time: < 24 hours',
+            channels: 'DIRECT CONTACT CHANNELS',
             nameLabel: 'Your Name',
             phoneLabel: 'Phone Number',
             emailLabel: 'Your Email',
             subjectLabel: 'Subject',
             messageLabel: 'Your Message...',
             submitBtn: 'Appointment Now →',
+            successTitle: 'Message Sent Successfully!',
+            successDesc: 'Thank you for reaching out. I will get back to you within 24 hours.',
+            sendAnother: 'Send another message',
+            sendMessage: 'Send Me a Message',
+            sendBtn: 'Send Message',
+            sendingBtn: 'Sending...',
             location: 'Larnaka, Cyprus',
             email: 'anto.grigoriadis@gmail.com',
             phone: '+357 97695495',
