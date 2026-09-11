@@ -693,6 +693,17 @@ const questions = [
             { text: 'Είναι υποχρεωτικό μόνο αν χρησιμοποιούμε παλιές εκδόσεις της PHP.', isCorrect: false },
         ],
         explanation: 'Για επιλεγμένα collections και portfolios (κάτω από μερικές εκατοντάδες εγγραφές), το In-Memory Client Filtering με React state και pure array methods προσφέρει άμεση αίσθηση ταχύτητας (snappiness), κρατώντας τον recruiter απόλυτα συγκεντρωμένο στα projects.'
+    },
+    {
+        id: 64,
+        category: 'React 19 / Debugging & Defensive UI',
+        question: 'Όταν μια σελίδα σε React SPA εμφανίζει ξαφνικά λευκή οθόνη (Blank White Screen) μετά από αλλαγή κώδικα, ενώ το Vite build πέρασε με επιτυχία (0 errors), ποια είναι η πιο συνηθισμένη αιτία;',
+        options: [
+            { text: 'Runtime Uncaught Exception κατά το render phase: Συνήθως απόπειρα ανάγνωσης property από undefined (π.χ. t.skills.title όταν το skills λείπει από το λεξικό translations). Αντιμετωπίζεται με Optional Chaining (t?.skills?.title || fallback) και Error Boundaries.', isCorrect: true },
+            { text: 'Ο υπολογιστής ξέμεινε προσωρινά από cookies ή storage.', isCorrect: false },
+            { text: 'Το Tailwind CSS μπλοκάρει τις σελίδες που περιέχουν άνω των 50 γραμμών JSX.', isCorrect: false },
+        ],
+        explanation: 'Τα TypeScript ή bundler compilers ελέγχουν τη σύνταξη, αλλά δεν γνωρίζουν αν ένα runtime αντικείμενο θα έχει όντως το nested property κατά την εκτέλεση. Το Optional Chaining (?.) προστατεύει το component tree από ολική κατάρρευση (white screen of death).'
     }
 ]
 
