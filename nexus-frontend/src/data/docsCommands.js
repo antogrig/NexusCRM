@@ -100,5 +100,18 @@ export const docsCommands = [
       { part: '--path=contact', meaning: 'Φίλτρο αναζήτησης για προβολή μόνο των σχετικών endpoints' }
     ],
     example: 'php artisan route:list --path=contact\n# POST api/contact .. Api\\ContactController@store\n# GET|HEAD api/contacts .. Api\\ContactController@index'
+  },
+  {
+    id: 9,
+    command: 'php artisan make:resource ContactResource --collection',
+    category: 'Architecture: Drupal to Laravel',
+    purpose: 'Αρχιτεκτονική Μετάβαση: Από Monolithic Drupal σε Decoupled Laravel 11 & React 19',
+    description: 'Σύγκριση της μετάβασης από παραδοσιακό CMS (Drupal 9/10 Entity Hooks & Twig) σε σύγχρονη Decoupled αρχιτεκτονική (Laravel 11 REST API + React 19 SPA). Το Laravel παρέχει καθαρό Controller-Action pattern, granular API Resources, Request Validation και ταχύτατο response time (υποδιαίρεση των 50ms) σε σχέση με το βαρύ Drupal bootstrap.',
+    breakdown: [
+      { part: 'Drupal CMS Paradigm', meaning: 'Βαριά Entity-Field αρχιτεκτονική, Hooks, Taxonomy, ιδανικό για editorial portals αλλά σύνθετο για custom web apps' },
+      { part: 'Laravel 11 Decoupled API', meaning: 'Καθαρό separation of concerns: Routes, Eloquent Models, Form Requests, και Resource JSON transformations' },
+      { part: 'React 19 SPA Consumer', meaning: 'Stateless consumption μέσω Axios, τοπικό Client-Side Routing, και zero server-side HTML rendering overhead' }
+    ],
+    example: '// Laravel API Resource Transformation:\npublic function toArray(Request $request): array {\n    return [\'id\' => $this->id, \'name\' => $this->name, \'email\' => $this->email];\n}'
   }
 ];
