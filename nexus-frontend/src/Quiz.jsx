@@ -605,6 +605,17 @@ const questions = [
             { text: 'Αποστολή των δεδομένων με απλό GET request στη γραμμή διευθύνσεων του browser.', isCorrect: false },
         ],
         explanation: 'Η ασύγχρονη διαχείριση (Async State Pattern) με Loading state, Error boundaries και Success feedback αποτελεί τον κανόνα για άψογο UX σε Decoupled Full-Stack εφαρμογές (React + Laravel).'
+    },
+    {
+        id: 56,
+        category: 'SEO & Web Standards / Open Graph',
+        question: 'Γιατί είναι κρίσιμη η προσθήκη Open Graph (og:*) meta tags σε ένα επαγγελματικό portfolio;',
+        options: [
+            { text: 'Εξασφαλίζουν ότι πλατφόρμες όπως το LinkedIn, Discord και Slack δημιουργούν πλούσια οπτική προεπισκόπηση (Rich Social Card) με τίτλο, εικόνα και περιγραφή όταν μοιράζεσαι το portfolio σου με recruiters.', isCorrect: true },
+            { text: 'Είναι υποχρεωτικά για να συνδεθεί το React με τη βάση δεδομένων.', isCorrect: false },
+            { text: 'Επιταχύνουν την ταχύτητα εκτέλεσης της JavaScript στον browser.', isCorrect: false },
+        ],
+        explanation: 'Το Open Graph protocol (og:title, og:description, og:image) μετατρέπει ένα απλό URL σε ελκυστική κάρτα παρουσίασης στα social media, προσελκύοντας άμεσα το ενδιαφέρον τεχνικών recruiters και συνεργατών.'
     }
 ]
 
