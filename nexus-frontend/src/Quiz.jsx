@@ -682,6 +682,17 @@ const questions = [
             { text: 'Χρήση HTML <iframe> για να φορτώνεται το footer από τρίτη ιστοσελίδα.', isCorrect: false },
         ],
         explanation: 'Η αρχιτεκτονική "Persistent Shell / Layout Wrapper" τοποθετεί τα global components (Navbar, Footer, Modals, Back-to-Top) έξω από τις διαδρομές των Routes. Αυτό διατηρεί το global state, μειώνει το memory churn και εξασφαλίζει απόλυτη συνέπεια στην πλοήγηση.'
+    },
+    {
+        id: 63,
+        category: 'Frontend Performance & UX',
+        question: 'Ποιο είναι το ουσιαστικό πλεονέκτημα του Client-Side In-Memory Filtering (μέσω JavaScript Array.filter) σε μια συλλογή έργων portfolio;',
+        options: [
+            { text: 'Zero Latency & Instant UX: Τα δεδομένα βρίσκονται ήδη στη μνήμη του client, επιτρέποντας ακαριαίο φιλτράρισμα κατηγοριών (0ms) χωρίς καθυστερήσεις δικτύου, HTTP requests ή spinners φόρτωσης.', isCorrect: true },
+            { text: 'Το client-side filtering διαγράφει αυτόματα τα αρχεία από το δίσκο του server.', isCorrect: false },
+            { text: 'Είναι υποχρεωτικό μόνο αν χρησιμοποιούμε παλιές εκδόσεις της PHP.', isCorrect: false },
+        ],
+        explanation: 'Για επιλεγμένα collections και portfolios (κάτω από μερικές εκατοντάδες εγγραφές), το In-Memory Client Filtering με React state και pure array methods προσφέρει άμεση αίσθηση ταχύτητας (snappiness), κρατώντας τον recruiter απόλυτα συγκεντρωμένο στα projects.'
     }
 ]
 
