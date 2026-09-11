@@ -9,8 +9,13 @@ import {
     Clock,
     MessageSquare
 } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import { translations } from '../data/translations'
 
 export default function Contact() {
+    const { lang } = useLanguage()
+    const t = translations[lang]
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -24,7 +29,7 @@ export default function Contact() {
         e.preventDefault()
         setLoading(true)
 
-        // Προσομοίωση αποστολής (αργότερα συνδέεται με Laravel API ή Formspree)
+        // Προσομοίωση αποστολής (στο επόμενο Phase θα συνδεθεί με το Laravel REST API)
         setTimeout(() => {
             setLoading(false)
             setSubmitted(true)
@@ -39,13 +44,13 @@ export default function Contact() {
             <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold">
                     <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Ας Συνεργαστούμε</span>
+                    <span>{t.contact.tag}</span>
                 </div>
                 <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    Έναρξη Συνεργασίας & Επικοινωνία
+                    {t.contact.title}
                 </h1>
                 <p className="text-slate-500 text-sm max-w-xl mx-auto leading-relaxed">
-                    Είμαι διαθέσιμος για ρόλους <strong>Full-Stack Web Engineer (Laravel / React)</strong> και <strong>Unreal Engine 5 Developer (C++ / Gameplay)</strong>.
+                    {t.contact.subtitle}
                 </p>
             </div>
 
@@ -59,22 +64,22 @@ export default function Contact() {
                         <div className="flex items-center gap-2">
                             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">
-                Διαθεσιμότητα
-              </span>
+                                {t.contact.availabilityTitle}
+                            </span>
                         </div>
                         <p className="text-sm font-semibold text-emerald-900">
-                            Ανοιχτός σε νέες προτάσεις εργασίας & συμβόλαια.
+                            {t.contact.availabilityDesc}
                         </p>
                         <div className="flex items-center gap-1.5 text-xs text-emerald-700 pt-1">
                             <Clock className="w-3.5 h-3.5" />
-                            <span>Άμεση απόκριση εντός 24 ωρών</span>
+                            <span>{t.contact.responseTime}</span>
                         </div>
                     </div>
 
                     {/* Contact Details Card */}
                     <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-5 shadow-sm">
                         <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wider">
-                            Κανάλια Επικοινωνίας
+                            {t.contact.channels}
                         </h3>
 
                         <div className="space-y-4 text-xs">
@@ -96,8 +101,12 @@ export default function Contact() {
                                     <MapPin className="w-4 h-4" />
                                 </div>
                                 <div>
-                                    <div className="text-[10px] text-slate-400 uppercase font-bold">Τοποθεσία</div>
-                                    <div className="font-semibold text-slate-800">Ελλάδα (Διαθέσιμος Remote)</div>
+                                    <div className="text-[10px] text-slate-400 uppercase font-bold">
+                                        {lang === 'el' ? 'Τοποθεσία' : 'Location'}
+                                    </div>
+                                    <div className="font-semibold text-slate-800">
+                                        {lang === 'el' ? 'Ελλάδα (Διαθέσιμος Remote)' : 'Greece (Available for Remote)'}
+                                    </div>
                                 </div>
                             </div>
 
@@ -128,43 +137,43 @@ export default function Contact() {
                                 <CheckCircle2 className="w-8 h-8" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-800">
-                                Το μήνυμά σας εστάλη επιτυχώς!
+                                {t.contact.successTitle}
                             </h3>
                             <p className="text-sm text-slate-500 max-w-md mx-auto">
-                                Ευχαριστώ για το ενδιαφέρον. Θα επικοινωνήσω μαζί σας το συντομότερο δυνατό.
+                                {t.contact.successDesc}
                             </p>
                             <button
                                 onClick={() => setSubmitted(false)}
-                                className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg transition"
+                                className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg transition cursor-pointer"
                             >
-                                Αποστολή νέου μηνύματος
+                                {t.contact.sendAnother}
                             </button>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="flex items-center gap-2 mb-2">
                                 <MessageSquare className="w-4 h-4 text-blue-600" />
-                                <h3 className="font-bold text-slate-800 text-base">Αποστολή Μηνύματος</h3>
+                                <h3 className="font-bold text-slate-800 text-base">{t.contact.sendMessage}</h3>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-600 mb-1">
-                                        Ονοματεπώνυμο *
+                                        {lang === 'el' ? 'Ονοματεπώνυμο *' : 'Full Name *'}
                                     </label>
                                     <input
                                         type="text"
                                         required
                                         value={form.name}
                                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                                        placeholder="π.χ. Γιάννης Παπαδόπουλος"
+                                        placeholder={lang === 'el' ? 'π.χ. Γιάννης Παπαδόπουλος' : 'e.g. John Doe'}
                                         className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-xs font-semibold text-slate-600 mb-1">
-                                        Email Επικοινωνίας *
+                                        {lang === 'el' ? 'Email Επικοινωνίας *' : 'Contact Email *'}
                                     </label>
                                     <input
                                         type="email"
@@ -179,28 +188,28 @@ export default function Contact() {
 
                             <div>
                                 <label className="block text-xs font-semibold text-slate-600 mb-1">
-                                    Θέμα
+                                    {lang === 'el' ? 'Θέμα' : 'Subject'}
                                 </label>
                                 <input
                                     type="text"
                                     required
                                     value={form.subject}
                                     onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                                    placeholder="π.χ. Πρόταση Συνεργασίας για Web / Game Project"
+                                    placeholder={lang === 'el' ? 'π.χ. Πρόταση Συνεργασίας για Web / Game Project' : 'e.g. Project Proposal or Engineering Role'}
                                     className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
                                 />
                             </div>
 
                             <div>
                                 <label className="block text-xs font-semibold text-slate-600 mb-1">
-                                    Μήνυμα *
+                                    {lang === 'el' ? 'Μήνυμα *' : 'Message *'}
                                 </label>
                                 <textarea
                                     required
                                     rows={4}
                                     value={form.message}
                                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                                    placeholder="Περιγράψτε εν συντομία το project ή τη θέση εργασίας..."
+                                    placeholder={lang === 'el' ? 'Περιγράψτε εν συντομία το project ή τη θέση εργασίας...' : 'Briefly describe the project or role opportunities...'}
                                     className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                                 ></textarea>
                             </div>
@@ -211,7 +220,7 @@ export default function Contact() {
                                 className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-sm disabled:opacity-50 cursor-pointer"
                             >
                                 <Send className="w-3.5 h-3.5" />
-                                <span>{loading ? 'Αποστολή...' : 'Αποστολή Μηνύματος'}</span>
+                                <span>{loading ? t.contact.sendingBtn : t.contact.sendBtn}</span>
                             </button>
                         </form>
                     )}

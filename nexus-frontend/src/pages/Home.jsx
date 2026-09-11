@@ -3,16 +3,19 @@ import {
     Code2,
     Gamepad2,
     Layers,
-    Database,
     ArrowRight,
-    CheckCircle2,
     Sparkles,
     LayoutDashboard,
     Brain,
     BookOpen
 } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import { translations } from '../data/translations'
 
 export default function Home() {
+    const { lang } = useLanguage()
+    const t = translations[lang]
+
     return (
         <div className="space-y-12 py-4">
 
@@ -24,15 +27,15 @@ export default function Home() {
                 <div className="relative z-10 max-w-3xl space-y-6">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
                         <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                        <span>Full-Stack Web & Real-Time Engine Developer</span>
+                        <span>{t.hero.tag}</span>
                     </div>
 
                     <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                        Γεφυρώνοντας το <span className="text-blue-600">Enterprise Web</span> με το <span className="text-amber-500">Unreal Engine</span>.
+                        {t.hero.titleP1} <span className="text-blue-600">{t.hero.titleWeb}</span> {t.hero.titleP2} <span className="text-amber-500">{t.hero.titleGame}</span>.
                     </h1>
 
                     <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                        Είμαι ο <strong>Αντώνης Γρηγοριάδης</strong>. Εξειδικεύομαι στην ανάπτυξη σύγχρονων Web εφαρμογών & CRM (Laravel 11, React 19, PostgreSQL, Drupal) και διαδραστικών simulations / game mechanics σε Unreal Engine 4/5 (C++, Blueprints, Gameplay Ability System).
+                        {t.hero.description}
                     </p>
 
                     {/* CTA Buttons */}
@@ -42,7 +45,7 @@ export default function Home() {
                             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl shadow-md shadow-blue-500/20 text-sm transition"
                         >
                             <LayoutDashboard className="w-4 h-4" />
-                            <span>Δες το Live CRM Demo</span>
+                            <span>{t.hero.ctaCrm}</span>
                             <ArrowRight className="w-4 h-4" />
                         </Link>
 
@@ -51,7 +54,7 @@ export default function Home() {
                             className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-xl text-sm transition border border-slate-200"
                         >
                             <Layers className="w-4 h-4 text-slate-500" />
-                            <span>Έργα & Case Studies</span>
+                            <span>{t.hero.ctaPortfolio}</span>
                         </Link>
                     </div>
                 </div>
@@ -69,13 +72,15 @@ export default function Home() {
                         Full-Stack Web & CRM Systems
                     </h2>
                     <p className="text-slate-600 text-sm leading-relaxed">
-                        Αρχιτεκτονική enterprise εφαρμογών με Decoupled λογική (REST API + React SPA), ασφάλεια με Laravel Sanctum, βάσεις PostgreSQL / MySQL και legacy εμπειρία σε Drupal CMS.
+                        {lang === 'el'
+                            ? 'Αρχιτεκτονική enterprise εφαρμογών με Decoupled λογική (REST API + React SPA), ασφάλεια με Laravel Sanctum, βάσεις PostgreSQL / MySQL και legacy εμπειρία σε Drupal CMS.'
+                            : 'Enterprise application architecture with decoupled logic (REST API + React SPA), Laravel Sanctum authentication, PostgreSQL / MySQL databases, and legacy experience in Drupal CMS.'}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-2">
                         {['Laravel 11', 'React 19', 'PostgreSQL', 'Drupal', 'Tailwind CSS', 'Docker'].map((tech) => (
                             <span key={tech} className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono text-xs font-medium">
-                {tech}
-              </span>
+                                {tech}
+                            </span>
                         ))}
                     </div>
                 </div>
@@ -89,13 +94,15 @@ export default function Home() {
                         Unreal Engine 4/5 & Interactive
                     </h2>
                     <p className="text-slate-600 text-sm leading-relaxed">
-                        Ανάπτυξη gameplay συστημάτων σε C++ και Blueprints, υλοποίηση Gameplay Ability System (GAS), AI συμπεριφορές με Behavior Trees, State Trees και real-time optimization.
+                        {lang === 'el'
+                            ? 'Ανάπτυξη gameplay συστημάτων σε C++ και Blueprints, υλοποίηση Gameplay Ability System (GAS), AI συμπεριφορές με Behavior Trees, State Trees και real-time optimization.'
+                            : 'Gameplay systems engineering in C++ and Blueprints, Gameplay Ability System (GAS) implementation, AI behaviors with Behavior Trees, State Trees, and real-time optimization.'}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-2">
                         {['Unreal Engine 5', 'C++', 'GAS', 'Behavior Trees', 'Blueprints', 'Mobile Game Dev'].map((tech) => (
                             <span key={tech} className="px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 font-mono text-xs font-medium border border-amber-100">
-                {tech}
-              </span>
+                                {tech}
+                            </span>
                         ))}
                     </div>
                 </div>
@@ -109,10 +116,12 @@ export default function Home() {
                         <span>Proof of Mastery & Transparency</span>
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold">
-                        Διαδραστική Τεκμηρίωση & Αυτοαξιολόγηση
+                        {lang === 'el' ? 'Διαδραστική Τεκμηρίωση & Αυτοαξιολόγηση' : 'Interactive Documentation & Knowledge Validation'}
                     </h2>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                        Κάθε γραμμή κώδικα και αρχιτεκτονική απόφαση σε αυτό το portfolio συνοδεύεται από ζωντανή τεκμηρίωση και διαδραστικό quiz γνώσεων.
+                        {lang === 'el'
+                            ? 'Κάθε γραμμή κώδικα και αρχιτεκτονική απόφαση σε αυτό το portfolio συνοδεύεται από ζωντανή τεκμηρίωση και διαδραστικό quiz γνώσεων.'
+                            : 'Every line of code and architectural decision in this portfolio is backed by live documentation and an interactive knowledge quiz.'}
                     </p>
                     <div className="flex flex-wrap gap-4 pt-4">
                         <Link
@@ -120,14 +129,14 @@ export default function Home() {
                             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition"
                         >
                             <Brain className="w-4 h-4" />
-                            <span>Δοκίμασε το Tech Quiz</span>
+                            <span>{lang === 'el' ? 'Δοκίμασε το Tech Quiz' : 'Explore Tech Quiz'}</span>
                         </Link>
                         <Link
                             to="/docs"
                             className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs font-bold px-5 py-2.5 rounded-lg transition"
                         >
                             <BookOpen className="w-4 h-4 text-amber-400" />
-                            <span>Άνοιξε τα Live Docs</span>
+                            <span>{lang === 'el' ? 'Άνοιξε τα Live Docs' : 'Open Live Docs'}</span>
                         </Link>
                     </div>
                 </div>

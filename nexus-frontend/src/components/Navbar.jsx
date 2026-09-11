@@ -1,7 +1,12 @@
 ﻿import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Brain, BookOpen, Briefcase, Home } from 'lucide-react'
+import { LayoutDashboard, Brain, BookOpen, Briefcase, Home, Layers, Globe } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import { translations } from '../data/translations'
 
 export default function Navbar() {
+    const { lang, toggleLanguage } = useLanguage()
+    const t = translations[lang]
+
     const linkClass = ({ isActive }) =>
         `flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition ${
             isActive
@@ -24,42 +29,55 @@ export default function Navbar() {
                     </div>
                 </NavLink>
 
-                {/* Navigation Links */}
-                <nav className="flex items-center gap-1">
-                    <NavLink to="/" className={linkClass}>
-                        <Home className="w-4 h-4" />
-                        <span>Αρχική</span>
-                    </NavLink>
+                {/* Navigation Links & Language Switcher */}
+                <div className="flex items-center gap-2">
+                    <nav className="flex items-center gap-1">
+                        <NavLink to="/" className={linkClass}>
+                            <Home className="w-4 h-4" />
+                            <span>{t.nav.home}</span>
+                        </NavLink>
 
-                    <NavLink to="/portfolio" className={linkClass}>
-                        <Briefcase className="w-4 h-4" />
-                        <span>Portfolio</span>
-                    </NavLink>
+                        <NavLink to="/portfolio" className={linkClass}>
+                            <Briefcase className="w-4 h-4" />
+                            <span>{t.nav.portfolio}</span>
+                        </NavLink>
 
-                    <NavLink to="/skills" className={linkClass}>
-                        <Layers className="w-4 h-4" />
-                        <span>Δεξιότητες</span>
-                    </NavLink>
+                        <NavLink to="/skills" className={linkClass}>
+                            <Layers className="w-4 h-4" />
+                            <span>{t.nav.skills}</span>
+                        </NavLink>
 
-                    <NavLink to="/crm" className={linkClass}>
-                        <LayoutDashboard className="w-4 h-4 text-emerald-600" />
-                        <span>Live CRM Demo</span>
-                    </NavLink>
+                        <NavLink to="/crm" className={linkClass}>
+                            <LayoutDashboard className="w-4 h-4 text-emerald-600" />
+                            <span>{t.nav.crm}</span>
+                        </NavLink>
 
-                    <NavLink to="/contact" className={linkClass}>
-                        <span>Επικοινωνία</span>
-                    </NavLink>
+                        <NavLink to="/contact" className={linkClass}>
+                            <span>{t.nav.contact}</span>
+                        </NavLink>
 
-                    <NavLink to="/quiz" className={linkClass}>
-                        <Brain className="w-4 h-4 text-blue-500" />
-                        <span>Tech Quiz</span>
-                    </NavLink>
+                        <NavLink to="/quiz" className={linkClass}>
+                            <Brain className="w-4 h-4 text-blue-500" />
+                            <span>{t.nav.quiz}</span>
+                        </NavLink>
 
-                    <NavLink to="/docs" className={linkClass}>
-                        <BookOpen className="w-4 h-4 text-amber-500" />
-                        <span>Docs</span>
-                    </NavLink>
-                </nav>
+                        <NavLink to="/docs" className={linkClass}>
+                            <BookOpen className="w-4 h-4 text-amber-500" />
+                            <span>{t.nav.docs}</span>
+                        </NavLink>
+                    </nav>
+
+                    {/* Κουμπί Εναλλαγής Γλώσσας (Language Switcher) */}
+                    <button
+                        onClick={toggleLanguage}
+                        aria-label="Toggle language"
+                        className="flex items-center gap-1.5 px-3 py-1.5 ml-2 rounded-lg text-xs font-bold border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition cursor-pointer shadow-sm hover:border-slate-300"
+                        title={lang === 'el' ? 'Switch to English' : 'Αλλαγή σε Ελληνικά'}
+                    >
+                        <Globe className="w-3.5 h-3.5 text-slate-500" />
+                        <span>{lang === 'el' ? '🇬🇷 GR' : '🇬🇧 EN'}</span>
+                    </button>
+                </div>
 
             </div>
         </header>

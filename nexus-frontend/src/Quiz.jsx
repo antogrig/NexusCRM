@@ -462,6 +462,94 @@ const questions = [
             { text: 'Κάνοντας resize το παράθυρο του browser.', isCorrect: false },
         ],
         explanation: 'Χρησιμοποιώντας inline style style={{ width: `${skill.level}%` }} σε συνδυασμό με transition-all duration-500, η μπάρα προόδου αποκτά ακριβές δυναμικό πλάτος με ομαλό εφέ γεμίσματος (smooth animation).'
+    },
+    {
+        id: 43,
+        category: 'React Context API & State',
+        question: 'Γιατί χρησιμοποιούμε το React Context API αντί για εξωτερικές βαριές βιβλιοθήκες για τη διαχείριση γλώσσας (i18n);',
+        options: [
+            { text: 'Γιατί είναι ενσωματωμένο στη React (zero dependencies), αποφεύγει το Prop Drilling και παρέχει άμεση πρόσβαση στη γλώσσα από οποιοδήποτε component.', isCorrect: true },
+            { text: 'Επειδή η React απαγορεύει τη χρήση εξωτερικών πακέτων.', isCorrect: false },
+            { text: 'Για να αυξήσουμε τον όγκο του JavaScript bundle.', isCorrect: false },
+        ],
+        explanation: 'Το React Context API είναι το ιδανικό εργαλείο για Global State όπως Language (GR/EN) και Theme. Επιτρέπει σε οποιοδήποτε component (π.χ. Navbar, Card, Footer) να καλέσει useLanguage() χωρίς να χρειάζεται να περνάμε τη γλώσσα ως prop από γονέα σε παιδί.'
+    },
+    {
+        id: 44,
+        category: 'Internationalization (i18n)',
+        question: 'Πώς λειτουργεί ένα Translation Dictionary (λεξικό μεταφράσεων) στη React;',
+        options: [
+            { text: 'Είναι ένα αντικείμενο με κλειδιά ανά γλώσσα ({ el: {...}, en: {...} }), απ\' όπου αντλούμε το σωστό κείμενο δυναμικά με translations[lang].section.key.', isCorrect: true },
+            { text: 'Καλεί αυτόματα το Google Translate API σε κάθε render.', isCorrect: false },
+            { text: 'Αλλάζει το domain name του website.', isCorrect: false },
+        ],
+        explanation: 'Με ένα δομημένο αντικείμενο translations[lang], η εφαρμογή επιλέγει άμεσα το σωστό κείμενο με βάση την τρέχουσα τιμή του lang ("el" ή "en") χωρίς καθυστέρηση δικτύου ή ανάγκη για εξωτερικά APIs.'
+    },
+    {
+        id: 45,
+        category: 'React Context / Architecture',
+        question: 'Γιατί τοποθετούμε έναν Context Provider (π.χ. <LanguageProvider>) ψηλά στη ρίζα της εφαρμογής (main.jsx);',
+        options: [
+            { text: 'Ώστε οποιοδήποτε component μέσα στο δέντρο της εφαρμογής (Navbar, σελίδες, κουμπιά κ.λπ.) να έχει απρόσκοπτη πρόσβαση στο global state μέσω του useLanguage().', isCorrect: true },
+            { text: 'Για να συνδεθεί αυτόματα η React με τη βάση δεδομένων PostgreSQL.', isCorrect: false },
+            { text: 'Γιατί η JavaScript απαιτεί υποχρεωτικά τουλάχιστον έναν Provider για να ξεκινήσει ο browser.', isCorrect: false },
+        ],
+        explanation: 'Ένας Context Provider παρέχει τα δεδομένα (state & συναρτήσεις) αποκλειστικά στους απογόνους του (children). Τυλίγοντας την ρίζα της εφαρμογής, κάθε component σε οποιοδήποτε βάθος μπορεί να διαβάσει τη γλώσσα και να την αλλάξει.'
+    },
+    {
+        id: 46,
+        category: 'Internationalization (i18n)',
+        question: 'Πώς καταναλώνουμε το useLanguage() σε ένα component (π.χ. Navbar) για άμεση εναλλαγή γλώσσας;',
+        options: [
+            { text: 'Κάνουμε destructure { lang, toggleLanguage } = useLanguage(), αντλούμε τα κείμενα με const t = translations[lang] και συνδέουμε το toggleLanguage στο onClick του κουμπιού.', isCorrect: true },
+            { text: 'Κάνουμε window.location.reload() και αλλάζουμε χειροκίνητα το HTML αρχείο.', isCorrect: false },
+            { text: 'Κάνουμε SQL query στη βάση δεδομένων για να μας επιστρέψει τα κείμενα του μενού.', isCorrect: false },
+        ],
+        explanation: 'Με το custom hook useLanguage(), το component έχει άμεση πρόσβαση στο state της γλώσσας. Μόλις εκτελεστεί το toggleLanguage(), η React προκαλεί αυτόματο re-render με το νέο λεξικό translations[lang] χωρίς full-page reload.'
+    },
+    {
+        id: 47,
+        category: 'React Architecture / Re-render',
+        question: 'Όταν ο χρήστης αλλάζει γλώσσα μέσω του Context, πώς ενημερώνεται η οθόνη;',
+        options: [
+            { text: 'Η React προκαλεί αυτόματο re-render σε όλα τα components που καταναλώνουν το useLanguage(), σχεδιάζοντάς τα ακαριαία με το νέο λεξικό κειμένων.', isCorrect: true },
+            { text: 'Ο browser εκτελεί πλήρες hard reload και κατεβάζει ξανά όλα τα JavaScript bundles από τον server.', isCorrect: false },
+            { text: 'Ο Vite server κάνει restart στο παρασκήνιο για να επαναμεταγλωττίσει τα αρχεία.', isCorrect: false },
+        ],
+        explanation: 'Το React Context API παρακολουθεί τους "συνδρομητές" του. Όταν το state (lang) αλλάξει, όλα τα components που καλούν useLanguage() επανασχεδιάζονται αυτόματα στον virtual DOM, προσφέροντας native SPA εμπειρία χωρίς καθυστερήσεις.'
+    },
+    {
+        id: 48,
+        category: 'Data-driven UI & i18n',
+        question: 'Ποια είναι η βέλτιστη πρακτική για διεθνοποίηση (i18n) σε σελίδες με δυναμικά δεδομένα (π.χ. Skills ή Timeline);',
+        options: [
+            { text: 'Συνδυασμός: οι στατικοί τίτλοι/κουμπιά αντλούνται από το translations[lang], ενώ τα αντικείμενα δεδομένων μπορούν να περιέχουν bilingual κλειδιά ή οικουμενικούς τεχνικούς όρους.', isCorrect: true },
+            { text: 'Διπλασιασμός όλου του κώδικα σε δύο διαφορετικά components (SkillsEl.jsx και SkillsEn.jsx).', isCorrect: false },
+            { text: 'Χρήση if/else σε κάθε γραμμή HTML του server.', isCorrect: false },
+        ],
+        explanation: 'Διατηρώντας Single Source of Truth, αποφεύγουμε τον διπλασιασμό του JSX layout. Το UI καταναλώνει τα δομικά κείμενα από το translation dictionary, διατηρώντας τον κώδικα DRY (Don\'t Repeat Yourself) και συντηρήσιμο.'
+    },
+    {
+        id: 49,
+        category: 'Forms & i18n',
+        question: 'Πώς διαχειριζόμαστε labels και placeholders σε φόρμες (π.χ. Contact Form) σε πολυγλωσσικές εφαρμογές;',
+        options: [
+            { text: 'Περνάμε δυναμικές τιμές στα props (π.χ. placeholder={lang === "el" ? "..." : "..."} ή t.contact.*), διατηρώντας τη φόρμα πλήρως controlled και προσβάσιμη.', isCorrect: true },
+            { text: 'Επανεγκαθιστούμε το React Router σε κάθε αλλαγή γλώσσας.', isCorrect: false },
+            { text: 'Απαγορεύεται η χρήση placeholders όταν υπάρχει υποστήριξη i18n.', isCorrect: false },
+        ],
+        explanation: 'Στη React τα attributes των input (όπως placeholder, label, aria-label) δέχονται οποιαδήποτε JavaScript έκφραση. Έτσι, η φόρμα παραμένει ένα ενιαίο, ελεγχόμενο (controlled) component που αλλάζει γλώσσα αυτόματα.'
+    },
+    {
+        id: 50,
+        category: 'Architecture Milestone / i18n',
+        question: 'Ποιο είναι το συνολικό αρχιτεκτονικό όφελος από τον συνδυασμό React Context + LocalStorage + Translation Dictionaries;',
+        options: [
+            { text: 'Πλήρης διεθνοποίηση (i18n) με μόνιμη αποθήκευση επιλογής χρήστη, μηδενικές εξωτερικές εξαρτήσεις (zero dependencies), αποφυγή Prop Drilling και ακαριαία ανανέωση του UI.', isCorrect: true },
+            { text: 'Απαιτείται επανεκκίνηση του web browser για να εφαρμοστεί η αλλαγή γλώσσας.', isCorrect: false },
+            { text: 'Χρειάζεται συνεχές fetching από εξωτερικό μεταφραστικό server που αυξάνει το network latency.', isCorrect: false },
+        ],
+        explanation: 'Ο συνδυασμός React Context API, LocalStorage persistence και Translation Dictionaries αποτελεί το απόλυτο βιομηχανικό πρότυπο για ταχύτατη, αξιόπιστη και ελαφριά διεθνοποίηση (i18n) σε σύγχρονα Single Page Applications.'
     }
 ]
 

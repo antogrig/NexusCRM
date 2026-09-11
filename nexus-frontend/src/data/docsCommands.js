@@ -36,5 +36,18 @@ export const docsCommands = [
       { part: '-m "..."', meaning: 'Ορίζει το περιγραφικό μήνυμα (commit message) χωρίς να ανοίξει εξωτερικό editor' }
     ],
     example: 'git add .\ngit commit -m "feat(portfolio): add contact page and routing"'
+  },
+  {
+    id: 4,
+    command: 'npm run build',
+    category: 'Build & Production',
+    purpose: 'Παραγωγή βελτιστοποιημένου Production Bundle',
+    description: 'Εκτελεί το "vite build" μεταγλωττίζοντας όλα τα React JSX αρχεία σε minified, production-ready JavaScript και CSS assets στο φάκελο dist/, κάνοντας tree-shaking και gzip optimization.',
+    breakdown: [
+      { part: 'npm run', meaning: 'Εκτελεί προκαθορισμένο script από το package.json' },
+      { part: 'build', meaning: 'Καλεί τον Vite compiler ("vite build")' },
+      { part: 'dist/', meaning: 'Ο τελικός στατικός φάκελος που περιέχει τα compiled HTML/CSS/JS αρχεία έτοιμα για deployment (Vercel, Netlify, Render)' }
+    ],
+    example: 'npm run build\n# Output: ✓ built in 481ms (dist/assets/index-*.js)'
   }
 ];
