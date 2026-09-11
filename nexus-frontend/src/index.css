@@ -1,1 +1,68 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   Reeni Hardware-Accelerated Animations
+   ========================================================================== */
+
+:root {
+    --duration-short: 200ms;
+    --duration-medium: 300ms;
+    --duration-long: 500ms;
+    --duration-extra-long: 600ms;
+}
+
+/* Zoom in image on hover */
+.animate-zoom-hover {
+    overflow: hidden;
+}
+
+.animate-zoom-hover img {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-zoom-hover:hover img {
+    transform: scale(1.05);
+}
+
+/* Ambient Orbiting Motion for Background Glows */
+@media (prefers-reduced-motion: no-preference) {
+    .animate-ambient {
+        animation: animateAmbient 25s linear infinite;
+    }
+
+    @keyframes animateAmbient {
+        0% {
+            transform: rotate(0deg) translateX(12px) rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg) translateX(12px) rotate(-360deg);
+        }
+    }
+
+    /* Fade in & Slide Up for sections */
+    .fade-in-up {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Reeni Watermark Stroke Text Behind Photo */
+.banner-big-text-watermark {
+    -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.15);
+    color: transparent;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    user-select: none;
+    pointer-events: none;
+}

@@ -616,6 +616,72 @@ const questions = [
             { text: 'Επιταχύνουν την ταχύτητα εκτέλεσης της JavaScript στον browser.', isCorrect: false },
         ],
         explanation: 'Το Open Graph protocol (og:title, og:description, og:image) μετατρέπει ένα απλό URL σε ελκυστική κάρτα παρουσίασης στα social media, προσελκύοντας άμεσα το ενδιαφέρον τεχνικών recruiters και συνεργατών.'
+    },
+    {
+        id: 57,
+        category: 'React Context / Debugging',
+        question: 'Όταν ένα κουμπί στο UI καλεί onClick={toggleLanguage} αλλά δεν αντιδρά, ποια είναι η συνηθέστερη αιτία στο Context API;',
+        options: [
+            { text: 'Η συνάρτηση toggleLanguage δεν έχει συμπεριληφθεί στο value prop του Context Provider (value={{ lang, setLanguage }} αντί για value={{ lang, toggleLanguage }}), με αποτέλεσμα να επιστρέφει undefined.', isCorrect: true },
+            { text: 'Ο υπολογιστής χρειάζεται επανεκκίνηση για να φορτώσει η React.', isCorrect: false },
+            { text: 'Το Tailwind CSS μπλοκάρει τις συναρτήσεις click στη React.', isCorrect: false },
+        ],
+        explanation: 'Όταν κάνουμε destructure { toggleLanguage } από το useLanguage() αλλά ο Provider δεν το παρέχει στο value={{ ... }}, η μεταβλητή παίρνει την τιμή undefined. Το onClick={undefined} δεν πετάει error αλλά δεν κάνει απολύτως τίποτα.'
+    },
+    {
+        id: 58,
+        category: 'React i18n / Architectural Design',
+        question: 'Ποιο είναι το μεγαλύτερο πλεονέκτημα της χρήσης κεντρικού λεξικού μεταφράσεων (translations[lang]) έναντι των διάσπαρτων ternary operators (π.χ. lang === "el" ? "..." : "...") μέσα στα components;',
+        options: [
+            { text: 'Single Source of Truth: Όλα τα κείμενα είναι συγκεντρωμένα σε ένα αρχείο, επιτρέποντας εύκολη προσθήκη νέων γλωσσών, αποφυγή σκληροπυρηνικών (hardcoded) κειμένων στα JSX components και απόλυτη συνέπεια στην ορολογία.', isCorrect: true },
+            { text: 'Μειώνει το μέγεθος της βάσης δεδομένων PostgreSQL.', isCorrect: false },
+            { text: 'Είναι υποχρεωτικό από το Vite για να μπορέσει να κάνει compile.', isCorrect: false },
+        ],
+        explanation: 'Ένα κεντρικό schema μεταφράσεων ({ el: {...}, en: {...} }) διαχωρίζει πλήρως το Content Layer από το Presentation Layer. Έτσι, τα components παραμένουν καθαρά, επαναχρησιμοποιήσιμα και εύκολα στη συντήρηση.'
+    },
+    {
+        id: 59,
+        category: 'CSS Architecture & Layout Design',
+        question: 'Γιατί σε ένα σύγχρονο Portfolio / Dashboard project δεν πρέπει να βάζουμε αυστηρό περιορισμό πλάτους (π.χ. max-w-6xl p-10) στο εξωτερικό App wrapper;',
+        options: [
+            { text: 'Επειδή "πνίγει" τα Hero banners και τα dynamic sections που απαιτούν πλήρες πλάτος οθόνης (Edge-to-Edge). Η σωστή πρακτική είναι το App να είναι 100% full-width, και κάθε σελίδα ή route (π.χ. CRM vs Home) να ορίζει εσωτερικά το δικό της max-w container.', isCorrect: true },
+            { text: 'Επειδή το Tailwind CSS δεν επιτρέπει τη χρήση του max-w-6xl σε nested routes.', isCorrect: false },
+            { text: 'Επειδή δημιουργεί πρόβλημα στα cookies του browser.', isCorrect: false },
+        ],
+        explanation: 'Η αρχιτεκτονική "Full-Width Canvas with Inner Containers" επιτρέπει στο Hero Banner να απλώνεται σε ολόκληρο το viewport (με φόντα και patterns), ενώ ταυτόχρονα διατηρεί τα panels του CRM ή του Blog τέλεια κεντραρισμένα και ευανάγνωστα.'
+    },
+    {
+        id: 60,
+        category: 'Tailwind CSS / Responsive Systems',
+        question: 'Πώς διασφαλίζουμε ότι ένας πίνακας μετρητών (Stats) ή καρτών προσαρμόζεται τέλεια από κινητό σε desktop χωρίς να σπάνε οι διαχωριστικές γραμμές (dividers);',
+        options: [
+            { text: 'Χρησιμοποιούμε συνδυασμό divide-y lg:divide-y-0 lg:divide-x divide-slate-100, ώστε σε κινητά οι γραμμές να διαχωρίζουν οριζόντια τα στοιχεία (κάθετα στοιβαγμένα) και σε desktop οριζόντια (δίπλα-δίπλα).', isCorrect: true },
+            { text: 'Βάζουμε σταθερό πλάτος width: 1200px σε όλα τα elements με inline CSS.', isCorrect: false },
+            { text: 'Απενεργοποιούμε το responsive layout για να φαίνεται παντού η έκδοση υπολογιστή.', isCorrect: false },
+        ],
+        explanation: 'Οι responsive utility classes του Tailwind (π.χ. divide-y σε mobile και lg:divide-x σε desktop) προσαρμόζουν αυτόματα τους visual dividers στη διάταξη του flex/grid χωρίς περιττό custom CSS.'
+    },
+    {
+        id: 61,
+        category: 'React 19 / Forms & State Management',
+        question: 'Ποιο είναι το ουσιαστικό πλεονέκτημα των Controlled Components (διαχείριση των inputs με React useState) σε σχέση με τα Uncontrolled Inputs;',
+        options: [
+            { text: 'Single Source of Truth: Το React State ελέγχει άμεσα την τιμή κάθε πεδίου (value={form.name}), επιτρέποντας real-time client validation, δυναμικό enabling/disabling του κουμπιού αποστολής και άμεσο καθαρισμό (reset) της φόρμας μετά την επιτυχή υποβολή.', isCorrect: true },
+            { text: 'Τα Controlled Components δεν επιτρέπουν στον χρήστη να πληκτρολογήσει ελληνικούς χαρακτήρες.', isCorrect: false },
+            { text: 'Είναι υποχρεωτικά μόνο αν χρησιμοποιούμε βάση δεδομένων MySQL.', isCorrect: false },
+        ],
+        explanation: 'Στα Controlled Components, κάθε αλλαγή στο input πυροδοτεί το onChange και ενημερώνει το State. Αυτό δίνει απόλυτο έλεγχο στο component για client-side validation, error handling, και άψογο UX πριν σταλούν τα δεδομένα στο REST API.'
+    },
+    {
+        id: 62,
+        category: 'SPA Architecture & React Patterns',
+        question: 'Ποια είναι η ενδεδειγμένη αρχιτεκτονική για την τοποθέτηση κοινών στοιχείων (όπως Navbar, Footer και Floating Scroll-to-Top) σε μια React Single Page Application;',
+        options: [
+            { text: 'Τοποθέτησή τους στο κεντρικό Layout (App.jsx) έξω από το <Routes>, ώστε να παραμένουν σταθερά και διαθέσιμα σε όλες τις σελίδες χωρίς περιττό unmounting και re-rendering κατά την πλοήγηση.', isCorrect: true },
+            { text: 'Αντιγραφή και επικόλληση του κώδικα του Footer ξεχωριστά σε κάθε αρχείο σελίδας (Home.jsx, Portfolio.jsx, CRM.jsx).', isCorrect: false },
+            { text: 'Χρήση HTML <iframe> για να φορτώνεται το footer από τρίτη ιστοσελίδα.', isCorrect: false },
+        ],
+        explanation: 'Η αρχιτεκτονική "Persistent Shell / Layout Wrapper" τοποθετεί τα global components (Navbar, Footer, Modals, Back-to-Top) έξω από τις διαδρομές των Routes. Αυτό διατηρεί το global state, μειώνει το memory churn και εξασφαλίζει απόλυτη συνέπεια στην πλοήγηση.'
     }
 ]
 

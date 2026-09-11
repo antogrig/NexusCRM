@@ -1,36 +1,38 @@
 ﻿import { createContext, useContext, useState, useEffect } from 'react'
 
-// 1. Δημιουργία του Context καναλιού
+// 1. Δημιουργία του Context
 const LanguageContext = createContext(null)
 
-// 2. Provider Component που θα αγκαλιάσει όλη την εφαρμογή
+// 2. Provider Component
 export function LanguageProvider({ children }) {
-    // Lazy State: Διαβάζουμε από το LocalStorage μόνο στο αρχικό φόρτωμα
     const [lang, setLangState] = useState(() => {
         const saved = localStorage.getItem('app_language')
         return saved === 'en' || saved === 'el' ? saved : 'el' // Προεπιλογή: Ελληνικά
     })
 
-    // Συνάρτηση αλλαγής γλώσσας με ταυτόχρονη αποθήκευση
     const setLanguage = (newLang) => {
         setLangState(newLang)
         localStorage.setItem('app_language', newLang)
         document.documentElement.lang = newLang
     }
 
-    // Συγχρονισμός του <html lang="..."> tag στο αρχικό mount
+    // Συνάρτηση toggle που καλεί το Navbar
+    const toggleLanguage = () => {
+        setLanguage(lang === 'el' ? 'en' : 'el')
+    }
+
     useEffect(() => {
         document.documentElement.lang = lang
     }, [lang])
 
     return (
-        <LanguageContext.Provider value={{ lang, setLanguage }}>
+        <LanguageContext.Provider value={{ lang, setLanguage, toggleLanguage }}>
             {children}
         </LanguageContext.Provider>
     )
 }
 
-// 3. Custom Hook για άμεση χρήση από οποιοδήποτε component
+// 3. Custom Hook
 export function useLanguage() {
     const context = useContext(LanguageContext)
     if (!context) {

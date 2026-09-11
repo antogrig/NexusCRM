@@ -9,6 +9,7 @@ import Portfolio from './pages/Portfolio'
 import SkillsPage from './pages/SkillsPage'
 import Contact from './pages/Contact'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 function App() {
     // 1. Auth States (Διαβάζουμε από το LocalStorage)
@@ -148,328 +149,331 @@ function App() {
 
     // Αν ΥΠΑΡΧΕΙ Token, δείχνουμε το Dashboard!
     return (
-        <div className="min-h-screen bg-slate-50 p-6 md:p-10 font-sans">
+        <div className="min-h-screen bg-slate-50 font-sans flex flex-col w-full">
+            {/* Full-Width Sticky Navbar */}
             <Navbar />
-            <div className="max-w-6xl mx-auto space-y-6">
 
-                {/* Top Header με User Profile & Logout */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <div className="flex items-center gap-2 mb-1">
-                            <h1 className="text-2xl font-bold text-slate-800">NexusCRM Dashboard</h1>
-                            <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                Sanctum Auth
-              </span>
-                        </div>
-                        <p className="text-slate-500 text-sm">Fullstack Laravel + React Portfolio</p>
-                    </div>
-
-                    <div className="flex items-center gap-3 flex-wrap">
-                        {/* User Badge */}
-                        <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-600 flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>👤 {user?.name || 'User'}</span>
-                            <span className="bg-blue-100 text-blue-800 font-semibold px-1.5 py-0.5 rounded text-[10px] uppercase">
-                {user?.role || 'admin'}
-              </span>
-                        </div>
-                        {/* Logout Button */}
-                        <button
-                            onClick={handleLogout}
-                            className="text-xs bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 hover:border-rose-200 transition cursor-pointer"
-                        >
-                            🚪 Αποσύνδεση
-                        </button>
-                    </div>
-                </div>
+            {/* Full-Width Main Content */}
+            <main className="flex-1 w-full">
                 <Routes>
                     {/* Διαδρομή για το CRM */}
                     <Route path="/crm" element={
                         !token ? (
-                            <Login onLoginSuccess={handleLoginSuccess} />
-                    ) : (
-                        <div className="space-y-6">
-                        {/* Δύο Φόρμες */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {/* Φόρμα 3: Task */}
-                            <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                                <h2 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                                    <span>📝</span> Νέο Task
-                                </h2>
-                                <form onSubmit={handleTaskSubmit} className="space-y-2.5">
-                                    <select
-                                        required
-                                        value={taskForm.project_id}
-                                        onChange={(e) => setTaskForm({ ...taskForm, project_id: e.target.value })}
-                                        className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-blue-500 outline-none bg-white"
-                                    >
-                                        <option value="">-- Επιλογή Project --</option>
-                                        {allProjects.map((p) => (
-                                            <option key={p.id} value={p.id}>
-                                                {p.title} ({p.client_name})
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <input
-                                        type="text"
-                                        required
-                                        value={taskForm.title}
-                                        onChange={(e) => setTaskForm({ ...taskForm, title: e.target.value })}
-                                        placeholder="Τίτλος Task (π.χ. Fix Header CSS) *"
-                                        className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
-                                    />
-                                    <button
-                                        type="submit"
-                                        disabled={submittingTask || allProjects.length === 0}
-                                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg text-xs transition disabled:opacity-50 cursor-pointer"
-                                    >
-                                        {submittingTask ? 'Αποθήκευση...' : '+ Προσθήκη Task'}
-                                    </button>
-                                </form>
+                            <div className="max-w-6xl mx-auto p-6 md:p-10">
+                                <Login onLoginSuccess={handleLoginSuccess} />
                             </div>
-
-                            {/* Φόρμα Πελάτη */}
-                            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                                <h2 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
-                                    <span>🏢</span> Προσθήκη Νέου Πελάτη
-                                </h2>
-                                <form onSubmit={handleClientSubmit} className="space-y-3">
+                        ) : (
+                            <div className="max-w-6xl mx-auto p-6 md:p-10 space-y-6">
+                                {/* Top Header με User Profile & Logout μόνο μέσα στο CRM */}
+                                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-slate-600 mb-1">Όνομα Εταιρείας *</label>
-                                        <input
-                                            type="text"
-                                            required
-                                            value={clientForm.company_name}
-                                            onChange={(e) => setClientForm({ ...clientForm, company_name: e.target.value })}
-                                            placeholder="π.χ. CyTech Systems"
-                                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <div>
-                                            <label className="block text-xs font-medium text-slate-600 mb-1">ΑΦΜ (VAT)</label>
-                                            <input
-                                                type="text"
-                                                value={clientForm.vat_number}
-                                                onChange={(e) => setClientForm({ ...clientForm, vat_number: e.target.value })}
-                                                placeholder="CY12345678"
-                                                className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <h1 className="text-2xl font-bold text-slate-800">NexusCRM Dashboard</h1>
+                                            <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                                Sanctum Auth
+                                            </span>
                                         </div>
-                                        <div>
-                                            <label className="block text-xs font-medium text-slate-600 mb-1">Τηλέφωνο</label>
-                                            <input
-                                                type="text"
-                                                value={clientForm.phone}
-                                                onChange={(e) => setClientForm({ ...clientForm, phone: e.target.value })}
-                                                placeholder="22123456"
-                                                className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
+                                        <p className="text-slate-500 text-sm">Fullstack Laravel + React Portfolio</p>
+                                    </div>
+
+                                    <div className="flex items-center gap-3 flex-wrap">
+                                        <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-600 flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            <span>👤 {user?.name || 'User'}</span>
+                                            <span className="bg-blue-100 text-blue-800 font-semibold px-1.5 py-0.5 rounded text-[10px] uppercase">
+                                                {user?.role || 'admin'}
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-medium text-slate-600 mb-1">Email</label>
-                                        <input
-                                            type="email"
-                                            value={clientForm.email}
-                                            onChange={(e) => setClientForm({ ...clientForm, email: e.target.value })}
-                                            placeholder="info@cytech.cy"
-                                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        disabled={submittingClient}
-                                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-sm transition mt-2 disabled:opacity-50 cursor-pointer"
-                                    >
-                                        {submittingClient ? 'Αποθήκευση...' : '+ Αποθήκευση Πελάτη'}
-                                    </button>
-                                </form>
-                            </div>
-
-                            {/* Φόρμα Project */}
-                            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                                <h2 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
-                                    <span>🚀</span> Ανάθεση Νέου Project
-                                </h2>
-                                <form onSubmit={handleProjectSubmit} className="space-y-3">
-                                    <div>
-                                        <label className="block text-xs font-medium text-slate-600 mb-1">Επιλογή Πελάτη *</label>
-                                        <select
-                                            required
-                                            value={projectForm.client_id}
-                                            onChange={(e) => setProjectForm({ ...projectForm, client_id: e.target.value })}
-                                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                        <button
+                                            onClick={handleLogout}
+                                            className="text-xs bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 hover:border-rose-200 transition cursor-pointer"
                                         >
-                                            <option value="">-- Επιλέξτε Πελάτη --</option>
-                                            {clients.map((c) => (
-                                                <option key={c.id} value={c.id}>
-                                                    {c.company_name} (ID: {c.id})
-                                                </option>
-                                            ))}
-                                        </select>
+                                            🚪 Αποσύνδεση
+                                        </button>
                                     </div>
-
-                                    <div>
-                                        <label className="block text-xs font-medium text-slate-600 mb-1">Τίτλος Project *</label>
-                                        <input
-                                            type="text"
-                                            required
-                                            value={projectForm.title}
-                                            onChange={(e) => setProjectForm({ ...projectForm, title: e.target.value })}
-                                            placeholder="π.χ. Mobile App Design"
-                                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-xs font-medium text-slate-600 mb-1">Κατάσταση (Status)</label>
-                                        <select
-                                            value={projectForm.status}
-                                            onChange={(e) => setProjectForm({ ...projectForm, status: e.target.value })}
-                                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
-                                        >
-                                            <option value="open">🟢 Open</option>
-                                            <option value="in_progress">🟡 In Progress</option>
-                                            <option value="completed">🔵 Completed</option>
-                                        </select>
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        disabled={submittingProject || clients.length === 0}
-                                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-lg text-sm transition mt-2 disabled:opacity-50 cursor-pointer"
-                                    >
-                                        {submittingProject ? 'Αποθήκευση...' : '+ Ανάθεση Project'}
-                                    </button>
-                                </form>
-                            </div>
-
-                        </div>
-
-                        {/* Πίνακας Πελατών & Projects */}
-                        {loading && <div className="text-center py-6 text-slate-500">Φόρτωση...</div>}
-                        {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg">{error}</div>}
-
-                        {!loading && !error && (
-                            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                                <div className="px-6 py-4 border-b border-slate-200">
-                                    <h2 className="font-semibold text-slate-700">
-                                        Πελάτες & Συνδεδεμένα Έργα ({clients.length})
-                                    </h2>
                                 </div>
-                                <table className="w-full text-left text-sm text-slate-600">
-                                    <thead className="bg-slate-50 text-slate-400 uppercase text-xs">
-                                    <tr>
-                                        <th className="px-6 py-3">Εταιρεία</th>
-                                        <th className="px-6 py-3">Επικοινωνία</th>
-                                        <th className="px-6 py-3">Projects</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-slate-100">
-                                    {clients.map((client) => (
-                                        <tr key={client.id} className="hover:bg-slate-50 transition-colors align-top">
-                                            <td className="px-6 py-4">
-                                                <p className="font-medium text-slate-800">{client.company_name}</p>
-                                                <p className="text-xs text-slate-400">ΑΦΜ: {client.vat_number || '-'}</p>
-                                            </td>
-                                            <td className="px-6 py-4 text-xs space-y-1">
-                                                <p>{client.email || '-'}</p>
-                                                <p className="text-slate-400">{client.phone || '-'}</p>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {client.projects && client.projects.length > 0 ? (
-                                                    <div className="space-y-3">
-                                                        {client.projects.map((proj) => (
-                                                            <div
-                                                                key={proj.id}
-                                                                className="bg-slate-50 border border-slate-200 rounded-lg p-2.5 space-y-2 text-xs"
-                                                            >
-                                                                <div className="flex items-center justify-between gap-2">
-                                                                    <span className="font-semibold text-slate-800 flex items-center gap-1">
-                                                                        <span>🚀</span> {proj.title}
-                                                                    </span>
-                                                                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
-                                                                        proj.status === 'completed'
-                                                                            ? 'bg-blue-100 text-blue-700'
-                                                                            : proj.status === 'in_progress'
-                                                                                ? 'bg-amber-100 text-amber-700'
-                                                                                : 'bg-emerald-100 text-emerald-700'
-                                                                    }`}>
-                                                                        {proj.status}
-                                                                    </span>
-                                                                </div>
 
-                                                                {/* Λίστα Tasks με Checkbox */}
-                                                                <div className="space-y-1 pt-1">
-                                                                    {proj.tasks && proj.tasks.length > 0 ? (
-                                                                        proj.tasks.map((task) => {
-                                                                            const isDone = task.status === 'done'
-                                                                            return (
-                                                                                <div
-                                                                                    key={task.id}
-                                                                                    onClick={() => handleToggleTask(task)}
-                                                                                    className="flex items-center gap-2 bg-white p-1.5 rounded border border-slate-200/80 hover:border-blue-300 transition cursor-pointer text-xs"
-                                                                                >
-                                                                                    <input
-                                                                                        type="checkbox"
-                                                                                        checked={isDone}
-                                                                                        readOnly
-                                                                                        className="rounded text-blue-600 cursor-pointer"
-                                                                                    />
-                                                                                    <span className={`flex-1 ${isDone ? 'line-through text-slate-400' : 'text-slate-700 font-medium'}`}>
-                                                                                        {task.title}
-                                                                                    </span>
-                                                                                    <span className={`text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase ${
-                                                                                        isDone ? 'bg-slate-100 text-slate-400' : 'bg-indigo-50 text-indigo-600'
-                                                                                    }`}>
-                                                                                        {task.status}
-                                                                                    </span>
-                                                                                </div>
-                                                                            )
-                                                                        })
-                                                                    ) : (
-                                                                        <p className="text-[11px] text-slate-400 italic">
-                                                                            Κανένα task ακόμα.
-                                                                        </p>
-                                                                    )}
-                                                                </div>
+                                {/* Φόρμες CRM */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {/* Φόρμα Task */}
+                                    <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                                        <h2 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                                            <span>📝</span> Νέο Task
+                                        </h2>
+                                        <form onSubmit={handleTaskSubmit} className="space-y-2.5">
+                                            <select
+                                                required
+                                                value={taskForm.project_id}
+                                                onChange={(e) => setTaskForm({ ...taskForm, project_id: e.target.value })}
+                                                className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                            >
+                                                <option value="">-- Επιλογή Project --</option>
+                                                {allProjects.map((p) => (
+                                                    <option key={p.id} value={p.id}>
+                                                        {p.title} ({p.client_name})
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <input
+                                                type="text"
+                                                required
+                                                value={taskForm.title}
+                                                onChange={(e) => setTaskForm({ ...taskForm, title: e.target.value })}
+                                                placeholder="Τίτλος Task *"
+                                                className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
+                                            />
+                                            <button
+                                                type="submit"
+                                                disabled={submittingTask || allProjects.length === 0}
+                                                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg text-xs transition disabled:opacity-50 cursor-pointer"
+                                            >
+                                                {submittingTask ? 'Αποθήκευση...' : '+ Προσθήκη Task'}
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    {/* Φόρμα Πελάτη */}
+                                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                                        <h2 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
+                                            <span>🏢</span> Προσθήκη Νέου Πελάτη
+                                        </h2>
+                                        <form onSubmit={handleClientSubmit} className="space-y-3">
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-600 mb-1">Όνομα Εταιρείας *</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={clientForm.company_name}
+                                                    onChange={(e) => setClientForm({ ...clientForm, company_name: e.target.value })}
+                                                    placeholder="π.χ. CyTech Systems"
+                                                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                                />
+                                            </div>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <div>
+                                                    <label className="block text-xs font-medium text-slate-600 mb-1">ΑΦΜ (VAT)</label>
+                                                    <input
+                                                        type="text"
+                                                        value={clientForm.vat_number}
+                                                        onChange={(e) => setClientForm({ ...clientForm, vat_number: e.target.value })}
+                                                        placeholder="CY12345678X"
+                                                        className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-medium text-slate-600 mb-1">Τηλέφωνο</label>
+                                                    <input
+                                                        type="text"
+                                                        value={clientForm.phone}
+                                                        onChange={(e) => setClientForm({ ...clientForm, phone: e.target.value })}
+                                                        placeholder="+357..."
+                                                        className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-600 mb-1">Email Επικοινωνίας</label>
+                                                <input
+                                                    type="email"
+                                                    value={clientForm.email}
+                                                    onChange={(e) => setClientForm({ ...clientForm, email: e.target.value })}
+                                                    placeholder="info@cytech.com"
+                                                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                                />
+                                            </div>
+                                            <button
+                                                type="submit"
+                                                disabled={submittingClient}
+                                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-sm transition mt-2 disabled:opacity-50 cursor-pointer"
+                                            >
+                                                {submittingClient ? 'Αποθήκευση...' : '+ Δημιουργία Πελάτη'}
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    {/* Φόρμα Project */}
+                                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                                        <h2 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
+                                            <span>📂</span> Ανάθεση Νέου Project
+                                        </h2>
+                                        <form onSubmit={handleProjectSubmit} className="space-y-3">
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-600 mb-1">Επιλογή Πελάτη *</label>
+                                                <select
+                                                    required
+                                                    value={projectForm.client_id}
+                                                    onChange={(e) => setProjectForm({ ...projectForm, client_id: e.target.value })}
+                                                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                                >
+                                                    <option value="">-- Επιλέξτε Εταιρεία --</option>
+                                                    {clients.map((c) => (
+                                                        <option key={c.id} value={c.id}>
+                                                            {c.company_name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-600 mb-1">Τίτλος Project *</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={projectForm.title}
+                                                    onChange={(e) => setProjectForm({ ...projectForm, title: e.target.value })}
+                                                    placeholder="π.χ. E-shop Redesign"
+                                                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-600 mb-1">Κατάσταση (Status)</label>
+                                                <select
+                                                    value={projectForm.status}
+                                                    onChange={(e) => setProjectForm({ ...projectForm, status: e.target.value })}
+                                                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                                >
+                                                    <option value="open">🟢 Open</option>
+                                                    <option value="in_progress">🟡 In Progress</option>
+                                                    <option value="completed">🔵 Completed</option>
+                                                </select>
+                                            </div>
+                                            <button
+                                                type="submit"
+                                                disabled={submittingProject || clients.length === 0}
+                                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-lg text-sm transition mt-2 disabled:opacity-50 cursor-pointer"
+                                            >
+                                                {submittingProject ? 'Αποθήκευση...' : '+ Ανάθεση Project'}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                {/* Πίνακας Πελατών & Projects */}
+                                {loading && <div className="text-center py-6 text-slate-500">Φόρτωση...</div>}
+                                {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg">{error}</div>}
+
+                                {!loading && !error && (
+                                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                                        <div className="px-6 py-4 border-b border-slate-200">
+                                            <h2 className="font-semibold text-slate-700">
+                                                🏢 Πελάτες & Projects ({clients.length})
+                                            </h2>
+                                        </div>
+
+                                        <table className="w-full text-left border-collapse text-sm">
+                                            <thead>
+                                            <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 text-xs uppercase font-medium">
+                                                <th className="px-6 py-3">Εταιρεία</th>
+                                                <th className="px-6 py-3">Στοιχεία Επικοινωνίας</th>
+                                                <th className="px-6 py-3">Projects & Tasks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-slate-100">
+                                            {clients.map((client) => (
+                                                <tr key={client.id} className="hover:bg-slate-50/80 transition">
+                                                    <td className="px-6 py-4">
+                                                        <div className="font-bold text-slate-800">{client.company_name}</div>
+                                                        <div className="text-xs text-slate-400">ΑΦΜ: {client.vat_number || '-'}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <div className="text-slate-700">{client.email || '-'}</div>
+                                                        <div className="text-xs text-slate-400">{client.phone || '-'}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        {client.projects && client.projects.length > 0 ? (
+                                                            <div className="space-y-3">
+                                                                {client.projects.map((proj) => (
+                                                                    <div
+                                                                        key={proj.id}
+                                                                        className="bg-slate-50 border border-slate-200 rounded-lg p-2.5 space-y-2 text-xs"
+                                                                    >
+                                                                        <div className="flex items-center justify-between gap-2">
+                                                                                <span className="font-semibold text-slate-800 flex items-center gap-1">
+                                                                                    <span>🚀</span> {proj.title}
+                                                                                </span>
+                                                                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                                                                                proj.status === 'completed'
+                                                                                    ? 'bg-blue-100 text-blue-700'
+                                                                                    : proj.status === 'in_progress'
+                                                                                        ? 'bg-amber-100 text-amber-700'
+                                                                                        : 'bg-emerald-100 text-emerald-700'
+                                                                            }`}>
+                                                                                    {proj.status}
+                                                                                </span>
+                                                                        </div>
+
+                                                                        <div className="space-y-1 pt-1">
+                                                                            {proj.tasks && proj.tasks.length > 0 ? (
+                                                                                proj.tasks.map((task) => {
+                                                                                    const isDone = task.status === 'done'
+                                                                                    return (
+                                                                                        <div
+                                                                                            key={task.id}
+                                                                                            onClick={() => handleToggleTask(task)}
+                                                                                            className="flex items-center gap-2 bg-white p-1.5 rounded border border-slate-200/80 hover:border-blue-300 transition cursor-pointer text-xs"
+                                                                                        >
+                                                                                            <input
+                                                                                                type="checkbox"
+                                                                                                checked={isDone}
+                                                                                                readOnly
+                                                                                                className="rounded text-blue-600 cursor-pointer"
+                                                                                            />
+                                                                                            <span className={`flex-1 ${isDone ? 'line-through text-slate-400' : 'text-slate-700 font-medium'}`}>
+                                                                                                    {task.title}
+                                                                                                </span>
+                                                                                            <span className={`text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase ${
+                                                                                                isDone ? 'bg-slate-100 text-slate-400' : 'bg-indigo-50 text-indigo-600'
+                                                                                            }`}>
+                                                                                                    {task.status}
+                                                                                                </span>
+                                                                                        </div>
+                                                                                    )
+                                                                                })
+                                                                            ) : (
+                                                                                <p className="text-[11px] text-slate-400 italic">
+                                                                                    Κανένα task ακόμα.
+                                                                                </p>
+                                                                            )}
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <span className="text-xs text-slate-400 italic">
-                                                        Κανένα project
-                                                    </span>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                    </tbody>
-                                </table>
+                                                        ) : (
+                                                            <span className="text-xs text-slate-400 italic">
+                                                                    Κανένα project
+                                                                </span>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
                             </div>
-                        )}
-
-        </div>
                         )
-} />
+                    } />
 
-{/* Διαδρομή Quiz */}
-    <Route path="/quiz" element={<Quiz />} />
+                    {/* Διαδρομές Quiz & Docs */}
+                    <Route path="/quiz" element={<Quiz />} />
+                    <Route path="/docs" element={<Docs />} />
 
-{/* Διαδρομή Docs */}
-    <Route path="/docs" element={<Docs />} />
+                    {/* Σελίδες Portfolio */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/skills" element={<SkillsPage />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<Navigate to="/crm" replace />} />
+                </Routes>
+            </main>
+            <main className="w-full flex-1">
+                <Routes>
+                    {/* ... όλα τα routes ... */}
+                </Routes>
+            </main>
 
-{/* Προεπιλογή: αν πατήσει Αρχική ή άγνωστο URL, πήγαινε στο /crm */}
-    <Route path="/" element={<Home />} />
-    <Route path="/portfolio" element={<Portfolio />} />
-    <Route path="/skills" element={<SkillsPage />} />
-    <Route path="/contact" element={<Contact />} />
-    <Route path="*" element={<Navigate to="/crm" replace />} />
-</Routes>
-
-</div>
-</div>
+            {/* Global Reeni Footer & Scroll-To-Top */}
+            <Footer />
+        </div>
     )
 }
 

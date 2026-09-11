@@ -113,5 +113,18 @@ export const docsCommands = [
       { part: 'React 19 SPA Consumer', meaning: 'Stateless consumption μέσω Axios, τοπικό Client-Side Routing, και zero server-side HTML rendering overhead' }
     ],
     example: '// Laravel API Resource Transformation:\npublic function toArray(Request $request): array {\n    return [\'id\' => $this->id, \'name\' => $this->name, \'email\' => $this->email];\n}'
+  },
+  {
+    id: 10,
+    command: "window.addEventListener('scroll', handleScroll, { passive: true })",
+    category: 'Performance & Frontend UX',
+    purpose: 'Hardware-Accelerated Scroll Listeners & Dynamic SVG Progress Indicators',
+    description: 'Χρήση του passive: true flag στα scroll event listeners για εξάλειψη του main thread jank (60-120fps scrolling) και δυναμικός υπολογισμός του scroll progress percentage για τον κυκλικό δείκτη (Back-to-Top Widget) με SVG strokeDasharray.',
+    breakdown: [
+      { part: '{ passive: true }', meaning: 'Δηλώνει στον browser ότι το listener δεν θα καλέσει preventDefault(), εκτελώντας το scroll άμεσα στο compositor thread χωρίς καθυστέρηση' },
+      { part: 'scrollHeight - innerHeight', meaning: 'Υπολογισμός του συνολικού δυναμικού ύψους κύλισης της σελίδας για εξαγωγή ακριβούς ποσοστού 0% - 100%' },
+      { part: 'strokeDasharray={`${progress}, 100`}', meaning: 'Μοντέρνα SVG τεχνική για dynamic ring fill χωρίς βαριές εξωτερικές βιβλιοθήκες' }
+    ],
+    example: "window.addEventListener('scroll', handleScroll, { passive: true });\nreturn () => window.removeEventListener('scroll', handleScroll);"
   }
 ];
