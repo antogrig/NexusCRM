@@ -704,6 +704,17 @@ const questions = [
             { text: 'Το Tailwind CSS μπλοκάρει τις σελίδες που περιέχουν άνω των 50 γραμμών JSX.', isCorrect: false },
         ],
         explanation: 'Τα TypeScript ή bundler compilers ελέγχουν τη σύνταξη, αλλά δεν γνωρίζουν αν ένα runtime αντικείμενο θα έχει όντως το nested property κατά την εκτέλεση. Το Optional Chaining (?.) προστατεύει το component tree από ολική κατάρρευση (white screen of death).'
+    },
+    {
+        id: 65,
+        category: 'Web Portfolio & Professional Digital Identity',
+        question: 'Ποιες είναι οι βέλτιστες πρακτικές ασφάλειας, SEO και UX κατά την ενσωμάτωση εξωτερικών επαγγελματικών συνδέσμων (LinkedIn, GitHub, GitLab) σε ένα σύγχρονο Developer Portfolio;',
+        options: [
+            { text: 'Χρήση target="_blank" με rel="noreferrer" (ή rel="noopener noreferrer") για αποφυγή Reverse Tabnabbing επιθέσεων και window.opener leak, κεντρική αποθήκευση URLs στο λεξικό translations για DRY συντηρησιμότητα, και προσθήκη αναγνωρίσιμων SVG εικονιδίων με σαφή aria-labels σε στρατηγικά σημεία (Navbar, Hero, Contact, Footer).', isCorrect: true },
+            { text: 'Χρήση αποκλειστικά plain text URLs χωρίς hyperlinks για να μην φεύγει ο recruiter από τη σελίδα.', isCorrect: false },
+            { text: 'Φόρτωση των προφίλ μέσα σε <iframe> για να μην ανοίγει ποτέ νέο tab.', isCorrect: false },
+        ],
+        explanation: 'Το rel="noreferrer" προστατεύει τον χρήστη και την εφαρμογή από reverse tabnabbing (όπου το νέο παράθυρο θα μπορούσε να χειραγωγήσει το window.opener). Η κεντρική διαχείριση στα translations διασφαλίζει ότι ένα μελλοντικό update στο username θα εφαρμοστεί ακαριαία σε ολόκληρο το site.'
     }
 ]
 

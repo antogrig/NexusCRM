@@ -98,7 +98,9 @@ export const translations = {
             location: 'Λάρνακα, Κύπρος',
             email: 'anto.grigoriadis@gmail.com',
             phone: '+357 97695495',
-            gitlab: 'gitlab.com/antogrig'
+            linkedin: 'https://www.linkedin.com/in/antonis-grigoriadis/',
+            github: 'https://github.com/antogrig',
+            gitlab: 'https://gitlab.com/antogrig'
         }
     },
 
@@ -201,7 +203,9 @@ export const translations = {
             location: 'Larnaka, Cyprus',
             email: 'anto.grigoriadis@gmail.com',
             phone: '+357 97695495',
-            gitlab: 'gitlab.com/antogrig'
+            linkedin: 'https://www.linkedin.com/in/antonis-grigoriadis/',
+            github: 'https://github.com/antogrig',
+            gitlab: 'https://gitlab.com/antogrig'
         }
     }
 }
