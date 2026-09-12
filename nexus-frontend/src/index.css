@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Prevent horizontal overflow during AOS slide animations */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 /* ==========================================================================
    Reeni Hardware-Accelerated Animations
    ========================================================================== */

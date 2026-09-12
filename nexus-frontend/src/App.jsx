@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import Login from './Login'
 import Quiz from './Quiz'
 import Docs from './Docs'
@@ -12,7 +14,26 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 function App() {
-    // 1. Auth States (Διαβάζουμε από το LocalStorage)
+    const location = useLocation()
+
+    // 1. Initialize AOS (Animate On Scroll - exactly as in Drupal AOS module)
+    useEffect(() => {
+        AOS.init({
+            duration: 850,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 60,
+            delay: 50,
+        })
+    }, [])
+
+    // 2. Refresh AOS positions & scroll to top on route transition
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        AOS.refresh()
+    }, [location.pathname])
+
+    // 3. Auth States (Διαβάζουμε από το LocalStorage)
     const [token, setToken] = useState(localStorage.getItem('nexus_token') || null)
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem('nexus_user') || 'null')
@@ -463,11 +484,6 @@ function App() {
                     <Route path="/skills" element={<SkillsPage />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<Navigate to="/crm" replace />} />
-                </Routes>
-            </main>
-            <main className="w-full flex-1">
-                <Routes>
-                    {/* ... όλα τα routes ... */}
                 </Routes>
             </main>
 

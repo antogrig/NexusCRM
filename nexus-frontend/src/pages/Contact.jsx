@@ -55,7 +55,10 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 space-y-16">
 
             {/* 1. Header */}
-            <div className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm text-center space-y-4">
+            <div
+                className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm text-center space-y-4"
+                data-aos="fade-up"
+            >
                 <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#ff014f] uppercase">
                     <span>GET IN TOUCH</span>
                 </div>
@@ -70,7 +73,11 @@ export default function Contact() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                 {/* 2. Αριστερή Στήλη: Στοιχεία Επικοινωνίας & Status (5 cols) */}
-                <div className="space-y-6 lg:col-span-5">
+                <div
+                    className="space-y-6 lg:col-span-5"
+                    data-aos="fade-right"
+                    data-aos-duration="850"
+                >
 
                     {/* Status Card */}
                     <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-3xl p-8 space-y-3">
@@ -195,7 +202,11 @@ export default function Contact() {
                 </div>
 
                 {/* 3. Δεξιά Στήλη: Φόρμα Επικοινωνίας (7 cols) */}
-                <div className="bg-white border border-slate-200/80 rounded-3xl p-8 sm:p-12 shadow-sm lg:col-span-7">
+                <div
+                    className="bg-white border border-slate-200/80 rounded-3xl p-8 sm:p-12 shadow-sm lg:col-span-7"
+                    data-aos="fade-left"
+                    data-aos-duration="850"
+                >
                     {submitted ? (
                         <div className="text-center py-12 space-y-4">
                             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">

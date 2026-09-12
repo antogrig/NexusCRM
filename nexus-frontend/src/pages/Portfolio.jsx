@@ -39,7 +39,10 @@ export default function Portfolio() {
             {/* =================================================================
                 1. REENI PORTFOLIO HEADER & FILTER PILLS
                ================================================================= */}
-            <div className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div
+                className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+                data-aos="fade-up"
+            >
                 <div className="space-y-4 max-w-2xl">
                     <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#ff014f] uppercase">
                         <span>PORTFOLIO & CASE STUDIES</span>
@@ -81,13 +84,15 @@ export default function Portfolio() {
                 2. PROJECTS GRID (BENTO REENI STYLE CARDS)
                ================================================================= */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {filteredProjects.map((project) => {
+                {filteredProjects.map((project, idx) => {
                     const isWeb = project.category === 'web'
 
                     return (
                         <div
                             key={project.id}
                             className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group"
+                            data-aos="fade-up"
+                            data-aos-delay={(idx % 2) * 150}
                         >
                             <div className="space-y-6">
                                 {/* Top Category & Status Badges */}
@@ -191,7 +196,11 @@ export default function Portfolio() {
             {/* =================================================================
                 3. BOTTOM INTERACTIVE HUB REMINDER
                ================================================================= */}
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+            <div
+                className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8"
+                data-aos="zoom-in-up"
+                data-aos-duration="850"
+            >
                 <div className="space-y-3 text-center md:text-left">
                     <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">
                         Validation & Technical Mastery

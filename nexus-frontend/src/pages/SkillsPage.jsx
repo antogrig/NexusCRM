@@ -37,7 +37,10 @@ export default function SkillsPage() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 space-y-16">
 
             {/* 1. Header Σελίδας */}
-            <div className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm text-center space-y-4">
+            <div
+                className="bg-[#f8f9fa] rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 lg:p-16 shadow-sm text-center space-y-4"
+                data-aos="fade-up"
+            >
                 <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#ff014f] uppercase">
                     <span>{t?.skills?.tag || 'TECHNICAL CAPABILITIES'}</span>
                 </div>
@@ -78,10 +81,12 @@ export default function SkillsPage() {
 
             {/* 2. Skills Matrix Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {filteredCategories.map((cat) => (
+                {filteredCategories.map((cat, idx) => (
                     <div
                         key={cat.id}
                         className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-sm space-y-6 hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1"
+                        data-aos="fade-up"
+                        data-aos-delay={(idx % 2) * 150}
                     >
                         <div className="flex items-center gap-4 border-b border-slate-100 pb-5">
                             <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-center">
@@ -130,7 +135,10 @@ export default function SkillsPage() {
             </div>
 
             {/* 3. Experience Timeline Section */}
-            <div className="bg-white rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 shadow-sm space-y-8">
+            <div
+                className="bg-white rounded-[2.5rem] border border-slate-200/80 p-8 sm:p-12 shadow-sm space-y-8"
+                data-aos="fade-up"
+            >
                 <div className="flex items-center gap-4 border-b border-slate-100 pb-5">
                     <div className="w-12 h-12 rounded-2xl bg-[#ff014f]/10 text-[#ff014f] flex items-center justify-center">
                         <Briefcase className="w-6 h-6" />
@@ -147,7 +155,12 @@ export default function SkillsPage() {
 
                 <div className="space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-200">
                     {experienceTimeline.map((item, idx) => (
-                        <div key={idx} className="relative pl-10 space-y-3">
+                        <div
+                            key={idx}
+                            className="relative pl-10 space-y-3"
+                            data-aos="fade-up"
+                            data-aos-delay={idx * 100}
+                        >
                             {/* Timeline Bullet */}
                             <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full border-2 border-[#ff014f] bg-white shadow-sm"></div>
 

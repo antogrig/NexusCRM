@@ -25,7 +25,10 @@ export default function Docs() {
     return (
         <div className="space-y-6">
             {/* Header Docs */}
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <div
+                className="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+                data-aos="fade-up"
+            >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <h2 className="text-xl font-bold text-slate-800">📖 Live Terminal & Architecture Docs</h2>
@@ -58,7 +61,7 @@ export default function Docs() {
                                         : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                 }`}
                             >
-                                {cat}
+                                <span className="font-mono text-xs">{cat}</span>
                             </button>
                         ))}
                     </div>
@@ -68,7 +71,11 @@ export default function Docs() {
             {/* Λίστα Εντολών */}
             <div className="space-y-4">
                 {filtered.map(item => (
-                    <div key={item.id} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-slate-300 transition">
+                    <div
+                        key={item.id}
+                        className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-slate-300 transition"
+                        data-aos="fade-up"
+                    >
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100">
                                 {item.category}

@@ -100,7 +100,11 @@ export default function Home() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
                         {/* Αριστερή Στήλη: HELLO, Τίτλος, Typewriter & CTAs (7 cols) */}
-                        <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div
+                            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+                            data-aos="fade-right"
+                            data-aos-duration="900"
+                        >
 
                             {/* Eyebrow "HELLO" */}
                             <div className="text-xs sm:text-sm font-extrabold tracking-[0.3em] text-slate-800 uppercase">
@@ -201,7 +205,11 @@ export default function Home() {
                         </div>
 
                         {/* Δεξιά Στήλη: Watermark Outline Text & Προσωπογραφία (5 cols) */}
-                        <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center">
+                        <div
+                            className="lg:col-span-5 relative flex justify-center lg:justify-end items-center"
+                            data-aos="fade-left"
+                            data-aos-duration="900"
+                        >
 
                             {/* Giant Watermark Text Outline πίσω από τη φωτογραφία */}
                             <div className="absolute -top-10 -left-12 lg:-left-20 select-none pointer-events-none z-0 opacity-15">
@@ -250,7 +258,7 @@ export default function Home() {
 
                 {/* 2.1 4 CORE SERVICES CARDS */}
                 <section className="space-y-12">
-                    <div className="text-center max-w-2xl mx-auto space-y-3">
+                    <div className="text-center max-w-2xl mx-auto space-y-3" data-aos="fade-up">
                         <div className="text-xs font-black tracking-widest text-[#ff014f] uppercase">
                             {t.services.badge}
                         </div>
@@ -261,7 +269,11 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {/* Service 1: Full-Stack Web */}
-                        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+                        <div
+                            className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
                             <div className="space-y-4">
                                 <div className="w-14 h-14 rounded-2xl bg-[#ff014f]/10 text-[#ff014f] flex items-center justify-center group-hover:bg-[#ff014f] group-hover:text-white transition-colors duration-300">
                                     <Code2 className="w-7 h-7" />
@@ -279,7 +291,11 @@ export default function Home() {
                         </div>
 
                         {/* Service 2: Unreal Engine 5 */}
-                        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+                        <div
+                            className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group"
+                            data-aos="fade-up"
+                            data-aos-delay="200"
+                        >
                             <div className="space-y-4">
                                 <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
                                     <Gamepad2 className="w-7 h-7" />
@@ -297,7 +313,11 @@ export default function Home() {
                         </div>
 
                         {/* Service 3: Drupal 9/10 */}
-                        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+                        <div
+                            className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group"
+                            data-aos="fade-up"
+                            data-aos-delay="300"
+                        >
                             <div className="space-y-4">
                                 <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
                                     <Layers className="w-7 h-7" />
@@ -315,7 +335,11 @@ export default function Home() {
                         </div>
 
                         {/* Service 4: Performance & Scalability */}
-                        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+                        <div
+                            className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#ff014f]/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group"
+                            data-aos="fade-up"
+                            data-aos-delay="400"
+                        >
                             <div className="space-y-4">
                                 <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300">
                                     <Award className="w-7 h-7" />
@@ -335,21 +359,25 @@ export default function Home() {
                 </section>
 
                 {/* 2.2 4 EXPERIENCE MILESTONE COUNTERS */}
-                <section className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm">
+                <section
+                    className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                >
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 text-center">
-                        <div className="space-y-2 p-4">
+                        <div className="space-y-2 p-4" data-aos="zoom-in" data-aos-delay="100">
                             <div className="text-4xl sm:text-5xl font-black text-[#ff014f] tracking-tight">{t.counters.expValue}</div>
                             <div className="text-xs sm:text-sm font-semibold text-slate-600">{t.counters.expLabel}</div>
                         </div>
-                        <div className="space-y-2 p-4">
+                        <div className="space-y-2 p-4" data-aos="zoom-in" data-aos-delay="200">
                             <div className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">{t.counters.projectsValue}</div>
                             <div className="text-xs sm:text-sm font-semibold text-slate-600">{t.counters.projectsLabel}</div>
                         </div>
-                        <div className="space-y-2 p-4">
+                        <div className="space-y-2 p-4" data-aos="zoom-in" data-aos-delay="300">
                             <div className="text-4xl sm:text-5xl font-black text-indigo-600 tracking-tight">{t.counters.gasValue}</div>
                             <div className="text-xs sm:text-sm font-semibold text-slate-600">{t.counters.gasLabel}</div>
                         </div>
-                        <div className="space-y-2 p-4">
+                        <div className="space-y-2 p-4" data-aos="zoom-in" data-aos-delay="400">
                             <div className="text-4xl sm:text-5xl font-black text-emerald-600 tracking-tight">{t.counters.perfValue}</div>
                             <div className="text-xs sm:text-sm font-semibold text-slate-600">{t.counters.perfLabel}</div>
                         </div>
@@ -358,7 +386,7 @@ export default function Home() {
 
                 {/* 2.3 EXPERIENCES TIMELINE (2-COLUMN REENI STYLE) */}
                 <section className="space-y-12">
-                    <div className="text-center max-w-2xl mx-auto space-y-3">
+                    <div className="text-center max-w-2xl mx-auto space-y-3" data-aos="fade-up">
                         <div className="text-xs font-black tracking-widest text-[#ff014f] uppercase">
                             {t.experiences.badge}
                         </div>
@@ -370,7 +398,11 @@ export default function Home() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
 
                         {/* Αριστερή Στήλη: Φωτογραφία & Senior Badge (5 cols) */}
-                        <div className="lg:col-span-5 sticky top-24 space-y-6">
+                        <div
+                            className="lg:col-span-5 sticky top-24 space-y-6"
+                            data-aos="fade-right"
+                            data-aos-duration="850"
+                        >
                             <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-lg bg-slate-900 relative group">
                                 <img
                                     src="/antonis.jpg"
@@ -396,7 +428,11 @@ export default function Home() {
                         <div className="lg:col-span-7 space-y-6">
 
                             {/* Job 1: Istology Senior */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#ff014f]/40 transition duration-300 space-y-3">
+                            <div
+                                className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#ff014f]/40 transition duration-300 space-y-3"
+                                data-aos="fade-left"
+                                data-aos-delay="100"
+                            >
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <span className="text-xs font-black uppercase px-3 py-1 rounded-full bg-rose-50 text-[#ff014f] border border-rose-100">
                                         {t.experiences.job1Badge}
@@ -411,7 +447,11 @@ export default function Home() {
                             </div>
 
                             {/* Project: Diploma Thesis RPG */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-300 space-y-3">
+                            <div
+                                className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-300 space-y-3"
+                                data-aos="fade-left"
+                                data-aos-delay="200"
+                            >
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <span className="text-xs font-black uppercase px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">
                                         {t.experiences.thesisBadge}
@@ -426,7 +466,11 @@ export default function Home() {
                             </div>
 
                             {/* Job 2: Freelance */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition duration-300 space-y-3">
+                            <div
+                                className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition duration-300 space-y-3"
+                                data-aos="fade-left"
+                                data-aos-delay="300"
+                            >
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <span className="text-xs font-black uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                                         {t.experiences.job2Badge}
@@ -441,7 +485,11 @@ export default function Home() {
                             </div>
 
                             {/* Job 3: Internship */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition duration-300 space-y-3">
+                            <div
+                                className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition duration-300 space-y-3"
+                                data-aos="fade-left"
+                                data-aos-delay="400"
+                            >
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <span className="text-xs font-black uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                                         {t.experiences.job3Badge}
@@ -462,7 +510,7 @@ export default function Home() {
 
                 {/* 2.4 3-CARD SHOWCASE GRID (CASE STUDIES) */}
                 <section className="space-y-12">
-                    <div className="text-center max-w-2xl mx-auto space-y-3">
+                    <div className="text-center max-w-2xl mx-auto space-y-3" data-aos="fade-up">
                         <div className="text-xs font-black tracking-widest text-[#ff014f] uppercase">
                             FEATURED CASE STUDIES
                         </div>
@@ -474,7 +522,11 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                         {/* Project 1: NexusCRM */}
-                        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group">
+                        <div
+                            className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
                             <div className="aspect-video bg-slate-900 flex items-center justify-center relative overflow-hidden animate-zoom-hover">
                                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-slate-900/50"></div>
                                 <div className="relative z-10 text-center space-y-2 p-6">
@@ -509,7 +561,11 @@ export default function Home() {
                         </div>
 
                         {/* Project 2: Project ATEI RPG */}
-                        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group">
+                        <div
+                            className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group"
+                            data-aos="fade-up"
+                            data-aos-delay="200"
+                        >
                             <div className="aspect-video bg-slate-900 flex items-center justify-center relative overflow-hidden animate-zoom-hover">
                                 <div className="absolute inset-0 bg-gradient-to-br from-amber-600/30 to-slate-900/50"></div>
                                 <div className="relative z-10 text-center space-y-2 p-6">
@@ -544,11 +600,15 @@ export default function Home() {
                         </div>
 
                         {/* Project 3: Istology Production Ecosystem */}
-                        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group">
+                        <div
+                            className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff014f]/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col group"
+                            data-aos="fade-up"
+                            data-aos-delay="300"
+                        >
                             <div className="aspect-video bg-slate-900 flex items-center justify-center relative overflow-hidden animate-zoom-hover">
                                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/30 to-slate-900/50"></div>
                                 <div className="relative z-10 text-center space-y-2 p-6">
-                                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 flex items-center justify-center mx-auto">
+                                    <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-400 border border-emerald-400/30 flex items-center justify-center mx-auto">
                                         <Layers className="w-6 h-6" />
                                     </div>
                                     <span className="text-white font-mono font-bold text-sm tracking-wide block">Istology 30+ Sites</span>
@@ -582,7 +642,11 @@ export default function Home() {
                 </section>
 
                 {/* 2.5 INTERACTIVE HUB (Quiz & Live Docs - ΠΟΥ ΚΡΑΤΑΜΕ ΜΟΝΙΜΑ!) */}
-                <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
+                <section
+                    className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-3xl p-8 sm:p-12 shadow-xl"
+                    data-aos="zoom-in-up"
+                    data-aos-duration="850"
+                >
                     <div className="max-w-3xl space-y-4">
                         <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
                             <span>Proof of Mastery & Transparency</span>
@@ -621,7 +685,11 @@ export default function Home() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
                         {/* Αριστερή Στήλη: Eyebrow, Τίτλος & Στοιχεία Επικοινωνίας */}
-                        <div className="lg:col-span-5 space-y-6">
+                        <div
+                            className="lg:col-span-5 space-y-6"
+                            data-aos="fade-right"
+                            data-aos-duration="850"
+                        >
                             <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#ff014f] uppercase">
                                 <span>{t.contact.badge}</span>
                             </div>
@@ -708,7 +776,11 @@ export default function Home() {
                         </div>
 
                         {/* Δεξιά Στήλη: Form Inputs (2x2 Grid + Textarea + Reeni Button) */}
-                        <div className="lg:col-span-7">
+                        <div
+                            className="lg:col-span-7"
+                            data-aos="fade-left"
+                            data-aos-duration="850"
+                        >
                             {isSubmitted ? (
                                 <div className="bg-white border-2 border-emerald-500 rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-md">
                                     <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">

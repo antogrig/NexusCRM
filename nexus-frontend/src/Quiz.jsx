@@ -715,6 +715,17 @@ const questions = [
             { text: 'Φόρτωση των προφίλ μέσα σε <iframe> για να μην ανοίγει ποτέ νέο tab.', isCorrect: false },
         ],
         explanation: 'Το rel="noreferrer" προστατεύει τον χρήστη και την εφαρμογή από reverse tabnabbing (όπου το νέο παράθυρο θα μπορούσε να χειραγωγήσει το window.opener). Η κεντρική διαχείριση στα translations διασφαλίζει ότι ένα μελλοντικό update στο username θα εφαρμοστεί ακαριαία σε ολόκληρο το site.'
+    },
+    {
+        id: 66,
+        category: 'Frontend Animations & Drupal AOS Architecture',
+        question: 'Πώς λειτουργεί η βιβλιοθήκη AOS (Animate On Scroll) όπως χρησιμοποιείται σε Drupal και modern frontend stacks, και πώς ενσωματώνεται άρτια σε ένα React Single Page Application;',
+        options: [
+            { text: 'Το AOS παρακολουθεί τη θέση των sections κατά το scrolling και ενεργοποιεί hardware-accelerated CSS μετασχηματισμούς (fade, slide, zoom) βάσει των data-aos attributes. Σε React SPA, αρχικοποιείται με AOS.init() και ανανεώνεται σε κάθε αλλαγή route μέσω AOS.refresh(), ενώ στο root CSS ορίζεται overflow-x: hidden για αποφυγή ανεπιθύμητου οριζόντιου scroll.', isCorrect: true },
+            { text: 'Το AOS απαιτεί Flash Player για να αποδώσει 3D εφέ και δεν υποστηρίζεται σε κινητά.', isCorrect: false },
+            { text: 'Το AOS αντικαθιστά πλήρως τις βάσεις δεδομένων και εκτελεί animations αποκλειστικά μέσω alert popups.', isCorrect: false },
+        ],
+        explanation: 'Το AOS εφαρμόζει CSS transforms μέσω της κλάσης aos-animate μόλις το στοιχείο μπει στο viewport. Το AOS.refresh() είναι απαραίτητο στο React Router καθώς τα DOM elements αλλάζουν δυναμικά χωρίς πλήρη επαναφόρτωση της ιστοσελίδας.'
     }
 ]
 
@@ -748,7 +759,10 @@ export default function Quiz() {
     return (
         <div className="space-y-6">
             {/* Header Quiz */}
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex justify-between items-center">
+            <div
+                className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex justify-between items-center"
+                data-aos="fade-up"
+            >
                 <div>
                     <h2 className="text-xl font-bold text-slate-800">🧠 Κέντρο Επανάληψης & Αυτοαξιολόγησης</h2>
                     <p className="text-slate-500 text-sm mt-1">
@@ -779,7 +793,11 @@ export default function Quiz() {
                     const isAnswered = selectedOption !== undefined
 
                     return (
-                        <div key={q.id} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <div
+                            key={q.id}
+                            className="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+                            data-aos="fade-up"
+                        >
                             <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
                   {q.category}
